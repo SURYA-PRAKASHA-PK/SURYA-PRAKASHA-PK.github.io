@@ -1410,10 +1410,9 @@
               <span class="assistant-avatar" aria-hidden="true">A</span>
               <div>
                 <h2 class="assistant-name">Ayrus</h2>
-                <p class="assistant-subtitle">Surya's  personal assistant and companion.</p>
+                <p class="assistant-subtitle">Surya's personal assistant and companion.</p>
               </div>
             </div>
-            <span class="assistant-status">Preview mode</span>
           </header>
           <div
             class="assistant-messages"
@@ -1425,8 +1424,7 @@
           >
             <div class="assistant-intro">
               <div class="assistant-message">
-                Hi, I’m Ayrus. I’m here and ready to help once my conversation
-                service is connected.
+                Hey! I’m Ayrus, Surya’s companion. You can ask me anything about him, his projects, or what he’s building... honestly, you can even ask me things you wouldn't ask him in person! 😉 What’s on your mind?
               </div>
               <div class="assistant-suggestions" aria-label="Suggested messages">
                 <button class="assistant-suggestion" type="button">
@@ -1464,7 +1462,7 @@
               </button>
             </form>
             <p class="assistant-note">
-              Ayrus is a preview. Replies will be enabled when its API is connected.
+              Ayrus is an AI companion — sometimes it may make mistakes. Consider checking important information.
             </p>
           </div>
         </div>
@@ -1561,7 +1559,11 @@
         }
       });
 
-      messageForm.addEventListener("submit", (event) => {
+      const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "http://127.0.0.1:8000"
+        : "https://wbpszbiq97.execute-api.ap-south-1.amazonaws.com";
+
+      messageForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const text = messageInput.value.trim();
 
@@ -1572,10 +1574,11 @@
         appendMessage(text, true);
         messageInput.value = "";
         resizeMessageInput();
+        sendButton.disabled = true;
 
         const typing = document.createElement("div");
         typing.className = "assistant-message";
-        typing.setAttribute("aria-label", "Ayrus is preparing a reply");
+        typing.setAttribute("aria-label", "Ayrus is thinking");
         const typingIndicator = document.createElement("span");
         typingIndicator.className = "assistant-typing";
         typingIndicator.setAttribute("aria-hidden", "true");
@@ -1588,13 +1591,36 @@
         messageList.append(typing);
         scrollMessagesToEnd();
 
-        window.setTimeout(() => {
+        try {
+          const idempotencyKey = "req_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
+          const response = await fetch(`${API_BASE}/v1/agent/requests`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Idempotency-Key": idempotencyKey,
+            },
+            body: JSON.stringify({ message: text }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`API error ${response.status}`);
+          }
+
+          const data = await response.json();
+          typing.remove();
+          const replyText = data.answer || "I processed your request, but have no reply at the moment.";
+          appendMessage(replyText, false);
+        } catch (err) {
+          console.error("Chat error:", err);
           typing.remove();
           appendMessage(
-            "I’m a preview right now. Connect my API to enable replies.",
+            "I ran into a quick hiccup connecting to my memory core. Please try again in a moment!",
             false,
           );
-        }, 650);
+        } finally {
+          resizeMessageInput();
+          messageInput.focus();
+        }
       });
 
       document
@@ -1608,24 +1634,53 @@
         });
 
       const contactForm = document.querySelector("#contact-form");
-
       const contactSuccess = document.querySelector("#contact-success");
+      const contactSubmit = contactForm.querySelector('button[type="submit"]');
 
-      contactForm.addEventListener("submit", (event) => {
+      contactForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const formData = new FormData(contactForm);
         const name = formData.get("name").toString().trim();
         const message = formData.get("message").toString().trim();
 
-        // TODO: replace with real API call
-        // fetch("/api/contact", {
-        //   method: "POST",
-        //   headers: { "Content-Type": "application/json" },
-        //   body: JSON.stringify({ name, message }),
-        // });
+        if (!name || !message) return;
 
-        contactForm.hidden = true;
-        contactSuccess.hidden = false;
+        if (contactSubmit) contactSubmit.disabled = true;
+
+        try {
+          // 1. Send email directly to suryaprakashapk@gmail.com via FormSubmit AJAX
+          const emailPromise = fetch("https://formsubmit.co/ajax/suryaprakashapk@gmail.com", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+            },
+            body: JSON.stringify({
+              name: name,
+              message: message,
+              _subject: `New message from ${name} via suryaprakashapk.com`,
+              _template: "table",
+            }),
+          });
+
+          // 2. Also log to your backend / MongoDB contact collection
+          const apiPromise = fetch(`${API_BASE}/v1/contact`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name, message: message }),
+          }).catch(() => null);
+
+          await Promise.allSettled([emailPromise, apiPromise]);
+
+          contactForm.hidden = true;
+          contactSuccess.hidden = false;
+        } catch (err) {
+          console.error("Contact send error:", err);
+          contactForm.hidden = true;
+          contactSuccess.hidden = false;
+        } finally {
+          if (contactSubmit) contactSubmit.disabled = false;
+        }
       });
 
       // Scroll-triggered reveals — each group staggers by 130ms per element
