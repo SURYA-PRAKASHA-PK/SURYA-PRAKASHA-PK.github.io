@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10131a" />
+  <title>Memory Studio | Developer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+  <style>
+    [hidden] { display: none !important; }
+    .login-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #10131a; color: #f3f4f6; }
+    .login-card { width: min(100%, 390px); display: grid; gap: 16px; padding: 30px; background: #191e28; border: 1px solid #303747; border-radius: 18px; box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+    .login-card h1 { margin: 6px 0 8px; }
+    .login-brand-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; font-weight: 800; }
+    .login-card input { width: 100%; box-sizing: border-box; padding: 12px 13px; border: 1px solid #394253; border-radius: 9px; background: #10131a; color: #f3f4f6; font: inherit; }
+    .login-card input:focus { outline: 2px solid #829cff; outline-offset: 1px; }
+    .login-error { min-height: 1.2em; margin: 0; color: #ff9090; }
+    .login-submit { width: 100%; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; }
+    .signed-in-label { margin-top: 8px; }
+    .memory-card-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+    .memory-delete-button { border: 1px solid #75414a; background: transparent; color: #ff9da8; border-radius: 8px; padding: 8px 12px; font: inherit; cursor: pointer; }
+    .memory-delete-button:hover { background: rgba(255, 100, 120, .12); }
+    .memory-delete-button:disabled { opacity: .55; cursor: wait; }
+    @media (max-width: 640px) { .topbar-actions { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <!-- Authentication gate: dashboard remains hidden until /auth/me confirms a session. -->
+  <section id="login-screen" class="login-screen" hidden>
+    <form id="login-form" class="login-card">
+      <div class="brand-mark login-brand-mark">M</div>
+      <div>
+        <div class="eyebrow">PRIVATE WORKSPACE</div>
+        <h1>Memory Studio</h1>
+        <p class="muted">Sign in to manage your personal memory library.</p>
+      </div>
+      <div class="field-group">
+        <label for="login-username">Username</label>
+        <input id="login-username" name="username" type="text" autocomplete="username" required maxlength="100" />
+      </div>
+      <div class="field-group">
+        <label for="login-password">Password</label>
+        <input id="login-password" name="password" type="password" autocomplete="current-password" required maxlength="1024" />
+      </div>
+      <p id="login-error" class="login-error" role="alert" aria-live="polite"></p>
+      <button class="button button-primary login-submit" id="login-button" type="submit">Sign in</button>
+      <p class="hint">Local development only. Do not expose this dashboard publicly.</p>
+    </form>
+  </section>
+
+  <div id="app-shell" class="app-shell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="#">
+        <span class="brand-mark">M</span>
+        <span>
+          <strong>Memory Studio</strong>
+          <small>Developer workspace</small>
+        </span>
+      </a>
+
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-link active" href="#capture">✳ &nbsp; Voice capture</a>
+      <a class="nav-link" href="#text-capture">✎ &nbsp; Write reflection</a>
+      <a class="nav-link" href="#documents">▤ &nbsp; Documents</a>
+      <a class="nav-link" href="#memories">▦ &nbsp; Saved memories</a>
+
+      <div class="sidebar-note">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Local development</strong>
+          <small id="connection-label">Checking API…</small>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        Private developer tools<br />
+        <span>Keep this interface local while testing authentication.</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">PERSONAL AI SYSTEM</div>
+          <h1>Memory workspace</h1>
+          <p class="muted">Capture reflections and manage the knowledge behind your AI assistant.</p>
+          <p class="muted signed-in-label">Signed in as <strong id="logged-in-user">—</strong></p>
+        </div>
+        <div class="topbar-actions">
+          <button class="button button-secondary" id="refresh-button" type="button">↻ Refresh</button>
+          <button class="button button-secondary" id="logout-button" type="button">Sign out</button>
+        </div>
+      </header>
+
+      <section class="stat-grid">
+        <article class="stat-card">
+          <span class="stat-label">Saved memories</span>
+          <strong id="memory-count">—</strong>
+          <span class="stat-caption">Loaded from your API</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Public</span>
+          <strong id="public-count">—</strong>
+          <span class="stat-caption">Eligible for public retrieval</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Personal &amp; sensitive</span>
+          <strong id="private-count">—</strong>
+          <span class="stat-caption">Excluded from public retrieval</span>
+        </article>
+      </section>
+
+      <section class="panel" id="capture">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">01 / VOICE CAPTURE</div>
+            <h2>Daily reflection</h2>
+            <p class="muted">Speak naturally. Review your transcript before saving it.</p>
+          </div>
+          <span class="pill">Speech to text</span>
+        </div>
+
+        <div class="recording-row">
+          <button class="record-button" id="record-button" type="button" aria-pressed="false">
+            <span class="record-icon">●</span>
+            <span id="record-button-label">Start recording</span>
+          </button>
+          <span class="record-status" id="record-status">Microphone is idle</span>
+        </div>
+
+        <label for="transcript">Transcript</label>
+        <textarea id="transcript" rows="7" maxlength="30000" placeholder="Your recognized speech will appear here. You can also type or edit your reflection..."></textarea>
+        <div class="field-meta">
+          <span>Review names and details before saving.</span>
+          <span id="character-count">0 / 30000</span>
+        </div>
+
+        <div class="form-row">
+          <div class="field-group">
+            <label for="voice-sensitivity">Sensitivity</label>
+            <select id="voice-sensitivity">
+              <option value="personal" selected>Personal — private reflection</option>
+              <option value="sensitive">Sensitive — highly private</option>
+              <option value="public">Public — chatbot may retrieve this</option>
+            </select>
+          </div>
+          <button class="button button-primary" id="save-voice-button" type="button">Save reflection</button>
+        </div>
+        <p class="hint">Recognition support depends on your browser. Some browser speech services process audio remotely.</p>
+      </section>
+
+      <section class="panel" id="text-capture">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">02 / TEXT CAPTURE</div>
+            <h2>Write a reflection</h2>
+            <p class="muted">Type a note or reflection and save it as a text memory.</p>
+          </div>
+          <span class="pill">Plain text</span>
+        </div>
+
+        <label for="text-reflection">Your reflection</label>
+        <textarea id="text-reflection" rows="7" maxlength="10000" placeholder="Write your reflection, idea, or something you want your personal memory system to remember..."></textarea>
+        <div class="field-meta">
+          <span>Text is saved as a text memory, not a voice transcript.</span>
+          <span id="text-character-count">0 / 10000</span>
+        </div>
+
+        <div class="form-row">
+          <div class="field-group">
+            <label for="text-sensitivity">Sensitivity</label>
+            <select id="text-sensitivity">
+              <option value="personal" selected>Personal — private reflection</option>
+              <option value="sensitive">Sensitive — highly private</option>
+              <option value="public">Public — chatbot may retrieve this</option>
+            </select>
+          </div>
+          <button class="button button-primary" id="save-text-button" type="button">Save text memory</button>
+        </div>
+      </section>
+
+      <section class="panel" id="documents">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">03 / DOCUMENT INGESTION</div>
+            <h2>Add a document</h2>
+            <p class="muted">Extract text from PDF or DOCX and save it as searchable memory chunks.</p>
+          </div>
+          <span class="pill">PDF · DOCX</span>
+        </div>
+
+        <form id="document-form">
+          <label class="upload-zone" for="document-file">
+            <span class="upload-icon">↑</span>
+            <strong id="file-label">Choose a PDF or DOCX file</strong>
+            <span class="muted">Maximum size: 10 MB</span>
+            <input id="document-file" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+          </label>
+
+          <div class="form-row">
+            <div class="field-group">
+              <label for="document-sensitivity">Sensitivity</label>
+              <select id="document-sensitivity">
+                <option value="personal" selected>Personal</option>
+                <option value="sensitive">Sensitive</option>
+                <option value="public">Public</option>
+              </select>
+            </div>
+            <button class="button button-primary" id="upload-button" type="submit">Upload document</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" id="memories">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">04 / MEMORY LIBRARY</div>
+            <h2>Saved memories</h2>
+            <p class="muted">Review the records stored in MongoDB.</p>
+          </div>
+          <button class="button button-secondary" id="memory-refresh-button" type="button">Reload</button>
+        </div>
+
+        <div class="toolbar">
+          <input id="memory-search" type="search" placeholder="Filter loaded memories…" />
+          <select id="memory-filter" aria-label="Filter memories by sensitivity">
+            <option value="all">All sensitivity levels</option>
+            <option value="public">Public</option>
+            <option value="personal">Personal</option>
+            <option value="sensitive">Sensitive</option>
+          </select>
+        </div>
+        <div id="memory-list" class="memory-list">
+          <div class="empty-state">Sign in to load memories.</div>
+        </div>
+        <p class="hint">The list displays the latest records returned by your API, not necessarily every record in the database.</p>
+      </section>
+
+      <footer class="page-footer">Memory Studio · Local development build</footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
