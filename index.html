@@ -1612,6 +1612,8 @@
         ? "http://127.0.0.1:8000"
         : "https://wbpszbiq97.execute-api.ap-south-1.amazonaws.com";
 
+      const chatHistory = [];
+
       messageForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const text = messageInput.value.trim();
@@ -1648,7 +1650,10 @@
               "Content-Type": "application/json",
               "Idempotency-Key": idempotencyKey,
             },
-            body: JSON.stringify({ message: text }),
+            body: JSON.stringify({
+              message: text,
+              history: chatHistory.slice(-6),
+            }),
           });
 
           if (!response.ok) {
@@ -1659,6 +1664,9 @@
           typing.remove();
           const replyText = data.answer || "I processed your request, but have no reply at the moment.";
           appendMessage(replyText, false);
+
+          chatHistory.push({ role: "user", text: text });
+          chatHistory.push({ role: "assistant", text: replyText });
         } catch (err) {
           console.error("Chat error:", err);
           typing.remove();
