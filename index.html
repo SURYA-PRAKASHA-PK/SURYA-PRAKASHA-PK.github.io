@@ -321,22 +321,58 @@
         background: rgb(217 225 190 / 12%);
         color: #f0ead7;
         cursor: pointer;
+        position: relative;
         will-change: transform;
         transition:
           transform 180ms ease,
           background-color 180ms ease,
-          color 180ms ease;
+          color 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
       }
 
       .closing-submit svg {
         width: 18px;
         height: 18px;
+        transition: transform 180ms ease;
       }
 
-      .closing-submit:hover {
-        transform: translateY(-1px);
+      .closing-submit:hover:not(:disabled) {
+        transform: translateY(-2px);
         background: #d9e1be;
         color: #145532;
+        border-color: #d9e1be;
+        box-shadow: 0 6px 18px rgb(217 225 190 / 22%);
+      }
+
+      .closing-submit:active:not(:disabled) {
+        transform: scale(0.93);
+      }
+
+      .closing-submit:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      .closing-submit.is-sending {
+        background: rgb(217 225 190 / 20%);
+        border-color: rgb(217 225 190 / 50%);
+      }
+
+      .closing-submit.is-sending svg {
+        animation: closing-spin 0.75s linear infinite;
+      }
+
+      .closing-submit.is-success {
+        background: #257046;
+        color: #f0ead7;
+        border-color: #5edb92;
+        transform: scale(1.06);
+      }
+
+      @keyframes closing-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
 
       .closing-submit:focus-visible,
@@ -346,10 +382,23 @@
       }
 
       .closing-success {
-        margin: 20px 0 0;
-        color: #d9e1be;
-        font: 15px/1.6 Arial, Helvetica, sans-serif;
+        margin: 18px auto 0;
+        max-width: 420px;
+        padding: 11px 18px;
+        border-radius: 12px;
+        background: rgb(37 112 70 / 44%);
+        border: 1px solid rgb(217 225 190 / 32%);
+        color: #f0ead7;
+        font: 14px/1.5 Arial, Helvetica, sans-serif;
         text-align: center;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 320ms ease, transform 320ms ease;
+      }
+
+      .closing-success.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .closing-signoff {
@@ -1636,6 +1685,26 @@
       const contactForm = document.querySelector("#contact-form");
       const contactSuccess = document.querySelector("#contact-success");
       const contactSubmit = contactForm.querySelector('button[type="submit"]');
+      let contactSuccessTimer = null;
+
+      const defaultSubmitIcon = `
+        <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7">
+          <path d="M10 15.5V4.5M5.5 9 10 4.5 14.5 9" />
+        </svg>
+      `;
+
+      const sendingSubmitIcon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9" stroke-opacity="0.25" />
+          <path d="M12 3a9 9 0 0 1 9 9" />
+        </svg>
+      `;
+
+      const successSubmitIcon = `
+        <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 10.5 8 14.5 16 6" />
+        </svg>
+      `;
 
       contactForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -1645,10 +1714,15 @@
 
         if (!name || !message) return;
 
-        if (contactSubmit) contactSubmit.disabled = true;
+        // 1. Interactive button loading state
+        if (contactSubmit) {
+          contactSubmit.disabled = true;
+          contactSubmit.classList.add("is-sending");
+          contactSubmit.innerHTML = sendingSubmitIcon;
+        }
 
         try {
-          // 1. Send email directly to suryaprakashapk@gmail.com via FormSubmit AJAX
+          // Send email directly to suryaprakashapk@gmail.com via FormSubmit AJAX
           const emailPromise = fetch("https://formsubmit.co/ajax/suryaprakashapk@gmail.com", {
             method: "POST",
             headers: {
@@ -1663,7 +1737,7 @@
             }),
           });
 
-          // 2. Also log to your backend / MongoDB contact collection
+          // Also log to your backend / MongoDB contact collection
           const apiPromise = fetch(`${API_BASE}/v1/contact`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -1672,14 +1746,53 @@
 
           await Promise.allSettled([emailPromise, apiPromise]);
 
-          contactForm.hidden = true;
+          // 2. Reset text boxes after sending
+          contactForm.reset();
+
+          // 3. Interactive button success state
+          if (contactSubmit) {
+            contactSubmit.classList.remove("is-sending");
+            contactSubmit.classList.add("is-success");
+            contactSubmit.innerHTML = successSubmitIcon;
+          }
+
+          // 4. Show success message with smooth fade in
           contactSuccess.hidden = false;
+          void contactSuccess.offsetHeight;
+          contactSuccess.classList.add("visible");
+
+          // 5. Success message disappears eventually (after 4 seconds)
+          if (contactSuccessTimer) clearTimeout(contactSuccessTimer);
+          contactSuccessTimer = setTimeout(() => {
+            contactSuccess.classList.remove("visible");
+            setTimeout(() => {
+              contactSuccess.hidden = true;
+            }, 350);
+          }, 4000);
+
         } catch (err) {
           console.error("Contact send error:", err);
-          contactForm.hidden = true;
+          contactForm.reset();
           contactSuccess.hidden = false;
+          void contactSuccess.offsetHeight;
+          contactSuccess.classList.add("visible");
+
+          if (contactSuccessTimer) clearTimeout(contactSuccessTimer);
+          contactSuccessTimer = setTimeout(() => {
+            contactSuccess.classList.remove("visible");
+            setTimeout(() => {
+              contactSuccess.hidden = true;
+            }, 350);
+          }, 4000);
         } finally {
-          if (contactSubmit) contactSubmit.disabled = false;
+          // Re-enable button and restore default upward arrow icon
+          setTimeout(() => {
+            if (contactSubmit) {
+              contactSubmit.disabled = false;
+              contactSubmit.classList.remove("is-sending", "is-success");
+              contactSubmit.innerHTML = defaultSubmitIcon;
+            }
+          }, 1500);
         }
       });
 
