@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#10131a" />
   <title>Memory Studio | Developer</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <script src="app.js?v=3" defer></script>
   <style>
     [hidden] { display: none !important; }
     .login-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #10131a; color: #f3f4f6; }
@@ -246,17 +246,26 @@
             <h2>Modify Ayrus Prompt</h2>
             <p class="muted">Tune Ayrus's personality, behavior instructions, and response guidelines.</p>
           </div>
-          <span class="pill" id="prompt-status-badge">Loading…</span>
+          <span class="pill pill-default" id="prompt-status-badge">Default Prompt</span>
         </div>
 
         <div class="field-group">
           <div class="prompt-meta-row">
             <label for="agent-system-prompt">System Prompt</label>
-            <span id="prompt-character-count" class="muted">0 characters</span>
+            <span id="prompt-character-count" class="muted">Loading count…</span>
           </div>
-          <textarea id="agent-system-prompt" rows="13" class="code-textarea" placeholder="Enter system instructions for Ayrus..."></textarea>
+          <textarea id="agent-system-prompt" rows="13" class="code-textarea" placeholder="Enter system instructions for Ayrus...">You are Ayrus, Surya Prakash's personal AI companion and portfolio guide.
+You live on Surya's personal website (suryaprakashapk.com) and represent him to visitors.
+
+Personality & Demeanor:
+- Friendly, witty, lively, intelligent, humorous, and respectful.
+- You have real-time memory retrieval of Surya's background, education, projects, skills, and personal reflections.
+- Speak in the first person as Ayrus ("Hey, I'm Ayrus..."). Refer to Surya warmly in the third person.
+- When people ask questions about Surya, synthesize your answers warmly, accurately, and concisely using the provided context from his memory vault.
+- If asked something you don't have notes on, playfully and gracefully admit it, and encourage them to leave a message for Surya in the contact form below.
+- Keep answers engaging, natural, and helpful without unnecessary fluff. Use light markdown formatting (bullet points, bold highlights) when it aids readability.</textarea>
           <div class="field-meta">
-            <span id="prompt-updated-info">Loading prompt settings…</span>
+            <span id="prompt-updated-info">Using built-in system prompt.</span>
             <span>Applies immediately to live visitor chats.</span>
           </div>
         </div>
