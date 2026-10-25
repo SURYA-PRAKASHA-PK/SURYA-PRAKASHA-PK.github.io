@@ -61,6 +61,9 @@ function showDashboard(username, csrfToken) {
   $("app-shell").hidden = false;
   $("logged-in-user").textContent = username || "admin";
   $("login-error").textContent = "";
+
+  updatePromptCharacterCount();
+  loadAgentPrompt();
 }
 
 // ---------- API requests ----------
@@ -716,20 +719,18 @@ function updatePromptCharacterCount() {
 }
 
 async function loadAgentPrompt() {
-  if (!state.authenticated) return;
-
   const textarea = $("agent-system-prompt");
   const badge = $("prompt-status-badge");
   const updatedInfo = $("prompt-updated-info");
 
   try {
     const data = await apiRequest("/v1/agent/prompt");
-    if (textarea) {
-      textarea.value = data.prompt || "";
+    if (textarea && data && data.prompt) {
+      textarea.value = data.prompt;
       updatePromptCharacterCount();
     }
 
-    if (badge) {
+    if (badge && data) {
       if (data.is_default) {
         badge.textContent = "Default Prompt";
         badge.className = "pill pill-default";
@@ -739,7 +740,7 @@ async function loadAgentPrompt() {
       }
     }
 
-    if (updatedInfo) {
+    if (updatedInfo && data) {
       if (data.is_default) {
         updatedInfo.textContent = "Using built-in system prompt.";
       } else if (data.updated_at) {
@@ -750,12 +751,8 @@ async function loadAgentPrompt() {
       }
     }
   } catch (error) {
-    if (badge) {
-      badge.textContent = "Error loading";
-    }
-    if (state.authenticated) {
-      showToast(`Could not load prompt: ${error.message}`, "error");
-    }
+    console.warn("Could not load prompt from server:", error);
+    updatePromptCharacterCount();
   }
 }
 
@@ -851,6 +848,22 @@ $("agent-system-prompt").addEventListener("input", updatePromptCharacterCount);
 $("save-prompt-button").addEventListener("click", saveAgentPrompt);
 $("reset-prompt-button").addEventListener("click", resetAgentPrompt);
 
+const promptNav = document.querySelector('a[href="#prompt-settings"]');
+if (promptNav) {
+  promptNav.addEventListener("click", () => {
+    loadAgentPrompt();
+  });
+}
+
+const promptBadge = $("prompt-status-badge");
+if (promptBadge) {
+  promptBadge.style.cursor = "pointer";
+  promptBadge.title = "Click to refresh prompt status";
+  promptBadge.addEventListener("click", () => {
+    loadAgentPrompt();
+  });
+}
+
 $("refresh-button").addEventListener("click", async () => {
   const connected = await checkApi();
 
@@ -874,5 +887,6 @@ window.addEventListener("beforeunload", () => {
 // ---------- Initialization ----------
 updateCharacterCount();
 updateTextCharacterCount();
+updatePromptCharacterCount();
 showLogin();
 checkSession();
