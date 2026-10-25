@@ -1722,8 +1722,8 @@
         }
 
         try {
-          // Send email directly to suryaprakashapk@gmail.com via FormSubmit AJAX
-          const emailPromise = fetch("https://formsubmit.co/ajax/suryaprakashapk@gmail.com", {
+          // 1. Dispatch email directly to suryaprakashapk@gmail.com in background with keepalive
+          fetch("https://formsubmit.co/ajax/suryaprakashapk@gmail.com", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -1735,18 +1735,24 @@
               _subject: `New message from ${name} via suryaprakashapk.com`,
               _template: "table",
             }),
-          });
+            keepalive: true,
+          }).catch((err) => console.warn("Email background send:", err));
 
-          // Also log to your backend / MongoDB contact collection
+          // 2. Also log to your backend / MongoDB contact collection with keepalive
           const apiPromise = fetch(`${API_BASE}/v1/contact`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: name, message: message }),
-          }).catch(() => null);
+            keepalive: true,
+          }).catch((err) => console.warn("Backend contact send:", err));
 
-          await Promise.allSettled([emailPromise, apiPromise]);
+          // 3. Ultra-fast feedback: brief ~450ms visual spinner or until backend responds
+          await Promise.race([
+            apiPromise,
+            new Promise((resolve) => setTimeout(resolve, 450)),
+          ]);
 
-          // 2. Reset text boxes after sending
+          // 4. Reset text boxes after sending
           contactForm.reset();
 
           // 3. Interactive button success state
