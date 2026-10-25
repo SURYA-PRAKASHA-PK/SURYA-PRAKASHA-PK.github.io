@@ -65,6 +65,7 @@
       <a class="nav-link" href="#text-capture">✎ &nbsp; Write reflection</a>
       <a class="nav-link" href="#documents">▤ &nbsp; Documents</a>
       <a class="nav-link" href="#memories">▦ &nbsp; Saved memories</a>
+      <a class="nav-link" href="#prompt-settings">⚙ &nbsp; Agent Prompt</a>
 
       <div class="sidebar-note">
         <span class="status-dot"></span>
@@ -236,6 +237,35 @@
           <div class="empty-state">Sign in to load memories.</div>
         </div>
         <p class="hint">The list displays the latest records returned by your API, not necessarily every record in the database.</p>
+      </section>
+
+      <section class="panel" id="prompt-settings">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">05 / AGENT SYSTEM PROMPT</div>
+            <h2>Modify Ayrus Prompt</h2>
+            <p class="muted">Tune Ayrus's personality, behavior instructions, and response guidelines.</p>
+          </div>
+          <span class="pill" id="prompt-status-badge">Loading…</span>
+        </div>
+
+        <div class="field-group">
+          <div class="prompt-meta-row">
+            <label for="agent-system-prompt">System Prompt</label>
+            <span id="prompt-character-count" class="muted">0 characters</span>
+          </div>
+          <textarea id="agent-system-prompt" rows="13" class="code-textarea" placeholder="Enter system instructions for Ayrus..."></textarea>
+          <div class="field-meta">
+            <span id="prompt-updated-info">Loading prompt settings…</span>
+            <span>Applies immediately to live visitor chats.</span>
+          </div>
+        </div>
+
+        <div class="form-row prompt-actions-row">
+          <button class="button button-secondary" id="reset-prompt-button" type="button">Reset to default</button>
+          <button class="button button-primary" id="save-prompt-button" type="button">Save prompt</button>
+        </div>
+        <p class="hint">Modifying this prompt dynamically updates how Ayrus interacts with visitors on suryaprakashapk.com in real-time.</p>
       </section>
 
       <footer class="page-footer">Memory Studio · Local development build</footer>

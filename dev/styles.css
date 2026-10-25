@@ -243,6 +243,45 @@ textarea::placeholder, input::placeholder { color: #697487; }
 .field-group select { min-height: 43px; }
 .form-row > .button { min-height: 43px; }
 
+.prompt-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.prompt-meta-row label {
+  margin-bottom: 0;
+}
+
+.code-textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 260px;
+  background: #0d1017;
+  border-color: #313848;
+}
+
+.prompt-actions-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.pill.pill-custom {
+  background: #173c30;
+  color: #8de2b6;
+  border-color: #296650;
+}
+
+.pill.pill-default {
+  background: #252b39;
+  color: #a9b8ff;
+  border-color: #3e4a66;
+}
+
 .upload-zone {
   min-height: 150px;
   display: flex;

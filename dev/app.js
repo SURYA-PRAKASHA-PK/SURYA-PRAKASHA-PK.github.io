@@ -167,7 +167,7 @@ async function checkSession() {
 
     if (session && session.authenticated) {
       showDashboard(session.username, session.csrf_token);
-      await loadMemories();
+      await Promise.all([loadMemories(), loadAgentPrompt()]);
     } else {
       showLogin();
     }
@@ -205,7 +205,7 @@ async function login(event) {
     showDashboard(result.username || username, result.csrf_token);
     showToast("Signed in successfully.", "success");
 
-    await loadMemories();
+    await Promise.all([loadMemories(), loadAgentPrompt()]);
   } catch (error) {
     $("login-error").textContent = error.message || "Sign-in failed.";
   } finally {
@@ -704,6 +704,118 @@ async function loadMemories() {
   }
 }
 
+// ---------- Agent System Prompt Management ----------
+function updatePromptCharacterCount() {
+  const textarea = $("agent-system-prompt");
+  if (!textarea) return;
+  const count = textarea.value.length;
+  const counter = $("prompt-character-count");
+  if (counter) {
+    counter.textContent = `${count.toLocaleString()} characters`;
+  }
+}
+
+async function loadAgentPrompt() {
+  if (!state.authenticated) return;
+
+  const textarea = $("agent-system-prompt");
+  const badge = $("prompt-status-badge");
+  const updatedInfo = $("prompt-updated-info");
+
+  try {
+    const data = await apiRequest("/v1/agent/prompt");
+    if (textarea) {
+      textarea.value = data.prompt || "";
+      updatePromptCharacterCount();
+    }
+
+    if (badge) {
+      if (data.is_default) {
+        badge.textContent = "Default Prompt";
+        badge.className = "pill pill-default";
+      } else {
+        badge.textContent = "Custom Prompt Active";
+        badge.className = "pill pill-custom";
+      }
+    }
+
+    if (updatedInfo) {
+      if (data.is_default) {
+        updatedInfo.textContent = "Using built-in system prompt.";
+      } else if (data.updated_at) {
+        const d = new Date(data.updated_at);
+        updatedInfo.textContent = `Last saved: ${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
+      } else {
+        updatedInfo.textContent = "Custom prompt active.";
+      }
+    }
+  } catch (error) {
+    if (badge) {
+      badge.textContent = "Error loading";
+    }
+    if (state.authenticated) {
+      showToast(`Could not load prompt: ${error.message}`, "error");
+    }
+  }
+}
+
+async function saveAgentPrompt() {
+  if (!state.authenticated) return;
+
+  const textarea = $("agent-system-prompt");
+  const saveBtn = $("save-prompt-button");
+  const prompt = textarea.value.trim();
+
+  if (!prompt) {
+    showToast("Prompt cannot be empty.", "error");
+    return;
+  }
+
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Saving…";
+
+  try {
+    await apiRequest("/v1/agent/prompt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
+
+    showToast("Ayrus prompt saved and active!", "success");
+    await loadAgentPrompt();
+  } catch (error) {
+    showToast(`Failed to save prompt: ${error.message}`, "error");
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save prompt";
+  }
+}
+
+async function resetAgentPrompt() {
+  if (!state.authenticated) return;
+
+  const confirmed = window.confirm("Reset Ayrus prompt back to default built-in instructions?");
+  if (!confirmed) return;
+
+  const resetBtn = $("reset-prompt-button");
+  resetBtn.disabled = true;
+  resetBtn.textContent = "Resetting…";
+
+  try {
+    await apiRequest("/v1/agent/prompt/reset", {
+      method: "POST",
+    });
+
+    showToast("Prompt reset to default.", "success");
+    await loadAgentPrompt();
+  } catch (error) {
+    showToast(`Failed to reset prompt: ${error.message}`, "error");
+  } finally {
+    resetBtn.disabled = false;
+    resetBtn.textContent = "Reset to default";
+  }
+}
+
 // ---------- Event listeners ----------
 $("login-form").addEventListener("submit", login);
 $("logout-button").addEventListener("click", logout);
@@ -735,11 +847,15 @@ $("document-file").addEventListener("change", () => {
 $("memory-search").addEventListener("input", renderMemories);
 $("memory-filter").addEventListener("change", renderMemories);
 
+$("agent-system-prompt").addEventListener("input", updatePromptCharacterCount);
+$("save-prompt-button").addEventListener("click", saveAgentPrompt);
+$("reset-prompt-button").addEventListener("click", resetAgentPrompt);
+
 $("refresh-button").addEventListener("click", async () => {
   const connected = await checkApi();
 
   if (connected && state.authenticated) {
-    await loadMemories();
+    await Promise.all([loadMemories(), loadAgentPrompt()]);
   }
 });
 
