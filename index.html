@@ -531,6 +531,46 @@
           both;
       }
 
+      .assistant-message strong {
+        color: #f7f3e8;
+        font-weight: 700;
+      }
+
+      .assistant-message p {
+        margin: 0 0 10px 0;
+      }
+
+      .assistant-message p:last-child {
+        margin-bottom: 0;
+      }
+
+      .assistant-message ul {
+        margin: 8px 0 10px 0;
+        padding-left: 18px;
+        list-style-type: disc;
+      }
+
+      .assistant-message ul:last-child {
+        margin-bottom: 0;
+      }
+
+      .assistant-message li {
+        margin-bottom: 6px;
+        line-height: 1.55;
+      }
+
+      .assistant-message li:last-child {
+        margin-bottom: 0;
+      }
+
+      .assistant-message code {
+        font-family: monospace;
+        font-size: 0.9em;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 5px;
+        border-radius: 4px;
+      }
+
       .assistant-message--user {
         align-self: flex-end;
         border-color: rgb(217 225 190 / 16%);
@@ -1580,12 +1620,65 @@
         });
       };
 
+      const formatAssistantMarkdown = (text) => {
+        if (!text) return "";
+        // 1. Escape HTML for security
+        let safe = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+
+        // 2. Normalize inline bullet items (e.g. '. * **' to newlines)
+        safe = safe.replace(/([.:!?]|\))\s*[*•\-]\s+(?=\*\*|[A-Z])/g, "$1\n* ");
+
+        // 3. Process lines
+        const lines = safe.split(/\r?\n/);
+        const out = [];
+        let inList = false;
+
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (!line) continue;
+
+          const bulletMatch = line.match(/^([*\-•])\s+(.+)$/);
+          if (bulletMatch) {
+            if (!inList) {
+              out.push("<ul>");
+              inList = true;
+            }
+            let itemContent = bulletMatch[2];
+            itemContent = itemContent.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+            itemContent = itemContent.replace(/`([^`]+)`/g, "<code>$1</code>");
+            out.push(`<li>${itemContent}</li>`);
+          } else {
+            if (inList) {
+              out.push("</ul>");
+              inList = false;
+            }
+            let paraContent = line;
+            paraContent = paraContent.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+            paraContent = paraContent.replace(/`([^`]+)`/g, "<code>$1</code>");
+            out.push(`<p>${paraContent}</p>`);
+          }
+        }
+
+        if (inList) {
+          out.push("</ul>");
+        }
+
+        return out.join("");
+      };
+
       const appendMessage = (text, isUser) => {
         const message = document.createElement("div");
         message.className = isUser
           ? "assistant-message assistant-message--user"
           : "assistant-message";
-        message.textContent = text;
+        if (isUser) {
+          message.textContent = text;
+        } else {
+          message.innerHTML = formatAssistantMarkdown(text);
+        }
         messageList.append(message);
         scrollMessagesToEnd();
         return message;
