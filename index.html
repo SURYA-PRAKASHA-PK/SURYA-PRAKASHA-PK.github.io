@@ -545,30 +545,6 @@
         display: none !important;
       }
 
-      .message-replay-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        margin-top: 8px;
-        padding: 4px 9px;
-        border: 1px solid rgb(217 225 190 / 18%);
-        border-radius: 6px;
-        background: rgb(217 225 190 / 7%);
-        color: rgb(231 234 220 / 75%);
-        cursor: pointer;
-        font: 11px/1.2 Arial, Helvetica, sans-serif;
-        transition:
-          background-color 160ms ease,
-          border-color 160ms ease,
-          color 160ms ease;
-      }
-
-      .message-replay-btn:hover {
-        background: rgb(217 225 190 / 18%);
-        border-color: rgb(217 225 190 / 38%);
-        color: #f0ead7;
-      }
-
       .assistant-messages {
         display: flex;
         flex-direction: column;
@@ -1763,7 +1739,7 @@
         }
       };
 
-      const appendMessage = (text, isUser, audioBase64 = null) => {
+      const appendMessage = (text, isUser) => {
         const message = document.createElement("div");
         message.className = isUser
           ? "assistant-message assistant-message--user"
@@ -1772,21 +1748,6 @@
           message.textContent = text;
         } else {
           message.innerHTML = formatAssistantMarkdown(text);
-          if (audioBase64) {
-            const replayBtn = document.createElement("button");
-            replayBtn.className = "message-replay-btn";
-            replayBtn.type = "button";
-            replayBtn.title = "Replay voiceover";
-            replayBtn.innerHTML = `
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              </svg>
-              <span>Play voice</span>
-            `;
-            replayBtn.addEventListener("click", () => playVoiceover(audioBase64, true));
-            message.append(replayBtn);
-          }
         }
         messageList.append(message);
         scrollMessagesToEnd();
@@ -1899,7 +1860,7 @@
           const data = await response.json();
           typing.remove();
           const replyText = data.answer || "I processed your request, but have no reply at the moment.";
-          appendMessage(replyText, false, data.audio_base64 || null);
+          appendMessage(replyText, false);
 
           if (data.audio_base64) {
             playVoiceover(data.audio_base64);
