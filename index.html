@@ -508,6 +508,38 @@
         content: "";
       }
 
+      .assistant-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .assistant-reset-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 12px;
+        border: 1px solid rgb(217 225 190 / 22%);
+        border-radius: 999px;
+        background: transparent;
+        color: rgb(231 234 220 / 72%);
+        font: 11px/1 Arial, Helvetica, sans-serif;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        transition:
+          background-color 180ms ease,
+          border-color 180ms ease,
+          color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .assistant-reset-btn:hover {
+        background: rgb(217 225 190 / 14%);
+        border-color: rgb(217 225 190 / 42%);
+        color: #f7f3e8;
+        transform: translateY(-1px);
+      }
+
       .assistant-voice-toggle {
         display: inline-flex;
         align-items: center;
@@ -1539,19 +1571,28 @@
                 <p class="assistant-subtitle">Surya's personal assistant and companion.</p>
               </div>
             </div>
-            <button class="assistant-voice-toggle" id="ayrus-voice-toggle" type="button" aria-label="Toggle voiceover" title="Toggle ElevenLabs voiceover">
-              <svg class="voice-icon-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-              </svg>
-              <svg class="voice-icon-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <line x1="23" y1="9" x2="17" y2="15"></line>
-                <line x1="17" y1="9" x2="23" y2="15"></line>
-              </svg>
-              <span class="voice-label">Voice On</span>
-            </button>
+            <div class="assistant-header-actions">
+              <button class="assistant-reset-btn" id="ayrus-reset-chat" type="button" aria-label="Start new conversation" title="Start new conversation">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+                <span>New chat</span>
+              </button>
+              <button class="assistant-voice-toggle" id="ayrus-voice-toggle" type="button" aria-label="Toggle voiceover" title="Toggle ElevenLabs voiceover">
+                <svg class="voice-icon-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+                <svg class="voice-icon-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <span class="voice-label">Voice On</span>
+              </button>
+            </div>
           </header>
           <div
             class="assistant-messages"
@@ -1809,7 +1850,77 @@
       messageInput.addEventListener("focus", warmBackend, { passive: true });
       messageInput.addEventListener("mouseenter", warmBackend, { passive: true });
 
-      const chatHistory = [];
+      // Session Management & Persistence
+      const getSessionId = () => {
+        let sid = sessionStorage.getItem("ayrus_chat_session_id");
+        if (!sid) {
+          sid = "sess_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
+          sessionStorage.setItem("ayrus_chat_session_id", sid);
+        }
+        return sid;
+      };
+
+      let chatHistory = [];
+
+      const saveCurrentSession = () => {
+        try {
+          sessionStorage.setItem("ayrus_chat_history", JSON.stringify(chatHistory.slice(-20)));
+        } catch (_) {}
+      };
+
+      const loadSavedSession = () => {
+        try {
+          const saved = sessionStorage.getItem("ayrus_chat_history");
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              chatHistory = parsed;
+              const intro = messageList.querySelector(".assistant-intro");
+              if (intro) intro.remove();
+              chatHistory.forEach((item) => {
+                appendMessage(item.text, item.role === "user");
+              });
+              scrollMessagesToEnd();
+            }
+          }
+        } catch (e) {
+          console.warn("Could not restore session:", e);
+        }
+      };
+
+      const resetChatSession = () => {
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          currentAudio = null;
+        }
+        chatHistory = [];
+        sessionStorage.removeItem("ayrus_chat_history");
+        sessionStorage.removeItem("ayrus_chat_session_id");
+        messageList.innerHTML = `
+          <div class="assistant-intro">
+            <div class="assistant-message">
+              Hey! I’m Ayrus, Surya’s companion. You can ask me anything about him, his projects, or what he’s building... honestly, you can even ask me things you wouldn't ask him in person! 😉 What’s on your mind?
+            </div>
+            <div class="assistant-suggestions" aria-label="Suggested messages">
+              <button class="assistant-suggestion" type="button">What can you help me with?</button>
+              <button class="assistant-suggestion" type="button">Tell me about Surya</button>
+            </div>
+          </div>
+        `;
+        messageList.querySelectorAll(".assistant-suggestion").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            messageInput.value = btn.textContent.trim();
+            resizeMessageInput();
+            messageInput.focus();
+          });
+        });
+        scrollMessagesToEnd();
+        messageInput.focus();
+      };
+
+      // Load session on startup
+      loadSavedSession();
 
       messageForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -1849,7 +1960,8 @@
             },
             body: JSON.stringify({
               message: text,
-              history: chatHistory.slice(-6),
+              history: chatHistory.slice(-8),
+              session_id: getSessionId(),
             }),
           });
 
@@ -1868,6 +1980,7 @@
 
           chatHistory.push({ role: "user", text: text });
           chatHistory.push({ role: "assistant", text: replyText });
+          saveCurrentSession();
         } catch (err) {
           console.error("Chat error:", err);
           typing.remove();
@@ -1880,6 +1993,11 @@
           messageInput.focus();
         }
       });
+
+      const resetChatBtn = document.querySelector("#ayrus-reset-chat");
+      if (resetChatBtn) {
+        resetChatBtn.addEventListener("click", resetChatSession);
+      }
 
       const voiceToggleBtn = document.querySelector("#ayrus-voice-toggle");
       if (voiceToggleBtn) {
