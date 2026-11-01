@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#10131a" />
   <title>Memory Studio | Developer</title>
-  <link rel="stylesheet" href="styles.css?v=3" />
-  <script src="app.js?v=3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <script src="app.js?v=4" defer></script>
   <style>
     [hidden] { display: none !important; }
     .login-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #10131a; color: #f3f4f6; }
@@ -66,6 +66,7 @@
       <a class="nav-link" href="#documents">▤ &nbsp; Documents</a>
       <a class="nav-link" href="#memories">▦ &nbsp; Saved memories</a>
       <a class="nav-link" href="#prompt-settings">⚙ &nbsp; Agent Prompt</a>
+      <a class="nav-link" href="#voice-settings">🎙 &nbsp; ElevenLabs Voice</a>
 
       <div class="sidebar-note">
         <span class="status-dot"></span>
@@ -275,6 +276,65 @@ Personality & Demeanor:
           <button class="button button-primary" id="save-prompt-button" type="button">Save prompt</button>
         </div>
         <p class="hint">Modifying this prompt dynamically updates how Ayrus interacts with visitors on suryaprakashapk.com in real-time.</p>
+      </section>
+
+      <section class="panel" id="voice-settings">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">06 / ELEVENLABS VOICE TUNER</div>
+            <h2>ElevenLabs Voice Settings</h2>
+            <p class="muted">Test and switch Ayrus's voice in real time. Changes apply globally to visitors on the site.</p>
+          </div>
+          <span class="pill pill-default" id="voice-status-badge">Default Voice</span>
+        </div>
+
+        <div class="voice-presets-row" style="margin-bottom: 20px;">
+          <label for="voice-preset-select">Available ElevenLabs Voices</label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <select id="voice-preset-select" style="flex: 1;">
+              <option value="">-- Choose from ElevenLabs Account Voices --</option>
+            </select>
+            <button class="button button-secondary" id="refresh-voices-button" type="button" title="Fetch voices from ElevenLabs">↻ Fetch</button>
+          </div>
+          <p class="hint" style="margin-top: 6px;">Pick a voice to automatically populate the Voice ID below, or type any custom ElevenLabs Voice ID.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 20px;">
+          <div class="field-group">
+            <label for="agent-voice-id">Voice ID</label>
+            <input id="agent-voice-id" type="text" placeholder="e.g. Dey7SsJGQxe5rLi7TlDb" spellcheck="false" required />
+            <span class="field-meta">Current ElevenLabs voice identifier.</span>
+          </div>
+          <div class="field-group">
+            <label for="agent-voice-model">TTS Model</label>
+            <select id="agent-voice-model">
+              <option value="eleven_multilingual_v2">eleven_multilingual_v2 (Recommended - High Quality)</option>
+              <option value="eleven_turbo_v2_5">eleven_turbo_v2_5 (Ultra Low Latency)</option>
+              <option value="eleven_flash_v2_5">eleven_flash_v2_5 (Fastest)</option>
+              <option value="eleven_monolingual_v1">eleven_monolingual_v1 (Legacy English)</option>
+            </select>
+            <span class="field-meta">ElevenLabs text-to-speech generation model.</span>
+          </div>
+        </div>
+
+        <div class="field-group" style="margin-bottom: 20px;">
+          <label for="voice-test-text">Test Preview Sentence</label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input id="voice-test-text" type="text" maxlength="300" value="Hey there! I am Ayrus, Surya's companion. How does this voice sound to you?" />
+            <button class="button button-secondary" id="preview-voice-button" type="button" style="white-space: nowrap;">▶ Play Preview</button>
+          </div>
+          <audio id="voice-preview-audio" style="width: 100%; margin-top: 10px; display: none;" controls></audio>
+        </div>
+
+        <div class="field-meta" style="margin-bottom: 16px;">
+          <span id="voice-updated-info">Using default built-in voice.</span>
+        </div>
+
+        <div class="form-row prompt-actions-row">
+          <button class="button button-secondary" id="reset-voice-button" type="button">Reset to default</button>
+          <button class="button button-primary" id="save-voice-settings-button" type="button">Save voice settings</button>
+        </div>
+        <p class="hint">Saving updates MongoDB. The active voice will be used for all future voiceovers by Ayrus.</p>
       </section>
 
       <footer class="page-footer">Memory Studio · Local development build</footer>

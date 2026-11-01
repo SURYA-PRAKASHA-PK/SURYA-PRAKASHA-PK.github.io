@@ -64,6 +64,7 @@ function showDashboard(username, csrfToken) {
 
   updatePromptCharacterCount();
   loadAgentPrompt();
+  loadAgentVoice();
 }
 
 // ---------- API requests ----------
@@ -813,6 +814,193 @@ async function resetAgentPrompt() {
   }
 }
 
+// ---------- ElevenLabs Voice Settings ----------
+let cachedVoices = [];
+
+function populateVoicePresets(voices, currentVoiceId) {
+  const select = $("voice-preset-select");
+  if (!select) return;
+
+  select.innerHTML = '<option value="">-- Choose from ElevenLabs Account Voices --</option>';
+
+  const popularPresets = [
+    { voice_id: "Dey7SsJGQxe5rLi7TlDb", name: "Surya's Voice Clone (Default)", category: "cloned" },
+    { voice_id: "21m00Tcm4TlvDq8ikWAM", name: "Rachel (Calm & Clear)", category: "premade" },
+    { voice_id: "AZnzlk1XvdvUeBnXmlld", name: "Domi (Strong & Engaging)", category: "premade" },
+    { voice_id: "EXAVITQu4vr4xnSDxMaL", name: "Bella (Soft & Natural)", category: "premade" },
+    { voice_id: "ErXwobaYiN019PkySvjV", name: "Antoni (Warm Male)", category: "premade" },
+    { voice_id: "VR6AewLTigWG4xSOukaG", name: "Arnold (Crisp & Articulate)", category: "premade" },
+    { voice_id: "pNInz6obpgDQGcFmaJgB", name: "Adam (Deep & Confident)", category: "premade" },
+    { voice_id: "yoZ06aMxZJJ28mfd3POQ", name: "Sam (Dynamic & Expressive)", category: "premade" },
+  ];
+
+  const seenIds = new Set();
+  const allVoices = [...(voices || [])];
+
+  popularPresets.forEach((p) => {
+    if (!allVoices.some((v) => v.voice_id === p.voice_id)) {
+      allVoices.push(p);
+    }
+  });
+
+  allVoices.forEach((v) => {
+    if (seenIds.has(v.voice_id)) return;
+    seenIds.add(v.voice_id);
+
+    const opt = document.createElement("option");
+    opt.value = v.voice_id;
+    opt.textContent = `${v.name} (${v.category || "custom"}) - ${v.voice_id}`;
+    if (v.voice_id === currentVoiceId) {
+      opt.selected = true;
+    }
+    select.appendChild(opt);
+  });
+}
+
+async function loadAgentVoice() {
+  if (!state.authenticated) return;
+
+  try {
+    const data = await apiRequest("/v1/agent/voice");
+    const voiceInput = $("agent-voice-id");
+    const modelSelect = $("agent-voice-model");
+    const badge = $("voice-status-badge");
+    const updatedInfo = $("voice-updated-info");
+
+    if (voiceInput) voiceInput.value = data.voice_id || "";
+    if (modelSelect) modelSelect.value = data.model_id || "eleven_multilingual_v2";
+
+    if (badge) {
+      if (data.is_default) {
+        badge.textContent = "Default Voice";
+        badge.className = "pill pill-default";
+      } else {
+        badge.textContent = "Custom Voice";
+        badge.className = "pill pill-custom";
+      }
+    }
+
+    if (updatedInfo) {
+      if (data.is_default) {
+        updatedInfo.textContent = `Using default voice (${data.default_voice_id}).`;
+      } else if (data.updated_at) {
+        const date = new Date(data.updated_at);
+        updatedInfo.textContent = `Custom voice active. Last updated: ${date.toLocaleString()}`;
+      } else {
+        updatedInfo.textContent = "Custom voice active.";
+      }
+    }
+
+    if (Array.isArray(data.available_voices)) {
+      cachedVoices = data.available_voices;
+      populateVoicePresets(data.available_voices, data.voice_id);
+    }
+  } catch (error) {
+    console.warn("Could not load voice settings from server:", error);
+  }
+}
+
+async function saveAgentVoice() {
+  if (!state.authenticated) return;
+
+  const voiceId = ($("agent-voice-id").value || "").trim();
+  const modelId = ($("agent-voice-model").value || "eleven_multilingual_v2").trim();
+  const saveBtn = $("save-voice-settings-button");
+
+  if (!voiceId) {
+    showToast("Voice ID cannot be empty.", "error");
+    return;
+  }
+
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Saving…";
+
+  try {
+    await apiRequest("/v1/agent/voice", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ voice_id: voiceId, model_id: modelId }),
+    });
+
+    showToast("ElevenLabs voice saved and active!", "success");
+    await loadAgentVoice();
+  } catch (error) {
+    showToast(`Failed to save voice: ${error.message}`, "error");
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save voice settings";
+  }
+}
+
+async function resetAgentVoice() {
+  if (!state.authenticated) return;
+
+  const confirmed = window.confirm("Reset Ayrus voice back to default voice ID?");
+  if (!confirmed) return;
+
+  const resetBtn = $("reset-voice-button");
+  resetBtn.disabled = true;
+  resetBtn.textContent = "Resetting…";
+
+  try {
+    await apiRequest("/v1/agent/voice/reset", {
+      method: "POST",
+    });
+
+    showToast("Voice reset to default.", "success");
+    await loadAgentVoice();
+  } catch (error) {
+    showToast(`Failed to reset voice: ${error.message}`, "error");
+  } finally {
+    resetBtn.disabled = false;
+    resetBtn.textContent = "Reset to default";
+  }
+}
+
+async function previewAgentVoice() {
+  if (!state.authenticated) return;
+
+  const voiceId = ($("agent-voice-id").value || "").trim();
+  const modelId = ($("agent-voice-model").value || "eleven_multilingual_v2").trim();
+  const text = ($("voice-test-text").value || "").trim();
+  const previewBtn = $("preview-voice-button");
+  const audioElement = $("voice-preview-audio");
+
+  if (!voiceId) {
+    showToast("Please enter or select a Voice ID to test.", "error");
+    return;
+  }
+  if (!text) {
+    showToast("Please enter a sentence to test preview.", "error");
+    return;
+  }
+
+  previewBtn.disabled = true;
+  previewBtn.textContent = "Generating audio…";
+
+  try {
+    const data = await apiRequest("/v1/agent/voice/preview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ voice_id: voiceId, model_id: modelId, text }),
+    });
+
+    if (data && data.audio_base64) {
+      audioElement.src = `data:audio/mpeg;base64,${data.audio_base64}`;
+      audioElement.style.display = "block";
+      await audioElement.play();
+      showToast("Playing voice preview!", "success");
+    } else {
+      showToast("No audio returned from preview API.", "error");
+    }
+  } catch (error) {
+    showToast(`Voice preview failed: ${error.message}`, "error");
+  } finally {
+    previewBtn.disabled = false;
+    previewBtn.textContent = "▶ Play Preview";
+  }
+}
+
 // ---------- Event listeners ----------
 $("login-form").addEventListener("submit", login);
 $("logout-button").addEventListener("click", logout);
@@ -864,11 +1052,56 @@ if (promptBadge) {
   });
 }
 
+const voicePresetSelect = $("voice-preset-select");
+if (voicePresetSelect) {
+  voicePresetSelect.addEventListener("change", (e) => {
+    if (e.target.value) {
+      $("agent-voice-id").value = e.target.value;
+    }
+  });
+}
+
+const refreshVoicesBtn = $("refresh-voices-button");
+if (refreshVoicesBtn) {
+  refreshVoicesBtn.addEventListener("click", () => loadAgentVoice());
+}
+
+const previewVoiceBtn = $("preview-voice-button");
+if (previewVoiceBtn) {
+  previewVoiceBtn.addEventListener("click", previewAgentVoice);
+}
+
+const saveVoiceBtn = $("save-voice-settings-button");
+if (saveVoiceBtn) {
+  saveVoiceBtn.addEventListener("click", saveAgentVoice);
+}
+
+const resetVoiceBtn = $("reset-voice-button");
+if (resetVoiceBtn) {
+  resetVoiceBtn.addEventListener("click", resetAgentVoice);
+}
+
+const voiceNav = document.querySelector('a[href="#voice-settings"]');
+if (voiceNav) {
+  voiceNav.addEventListener("click", () => {
+    loadAgentVoice();
+  });
+}
+
+const voiceBadge = $("voice-status-badge");
+if (voiceBadge) {
+  voiceBadge.style.cursor = "pointer";
+  voiceBadge.title = "Click to refresh voice status";
+  voiceBadge.addEventListener("click", () => {
+    loadAgentVoice();
+  });
+}
+
 $("refresh-button").addEventListener("click", async () => {
   const connected = await checkApi();
 
   if (connected && state.authenticated) {
-    await Promise.all([loadMemories(), loadAgentPrompt()]);
+    await Promise.all([loadMemories(), loadAgentPrompt(), loadAgentVoice()]);
   }
 });
 
