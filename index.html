@@ -1,1903 +1,1860 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#145532" />
-    <meta
-      name="description"
-      content="Surya Prakasha P K's personal website."
-    />
-    <title>Surya Prakasha P K</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        color-scheme: dark;
-        background: #145532;
-        font-family: Georgia, "Times New Roman", serif;
-      }
 
-      * {
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#145532" />
+  <meta name="description" content="Surya Prakasha P K's personal website." />
+  <title>Surya Prakasha P K</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      background: #145532;
+      font-family: Georgia, "Times New Roman", serif;
+    }
 
-      html,
-      body {
-        min-height: 100%;
-        margin: 0;
-      }
+    * {
+      box-sizing: border-box;
+    }
 
-      html {
-        scroll-behavior: smooth;
-        scroll-snap-type: y mandatory;
-        overscroll-behavior: none;
-      }
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+    }
 
-      body {
-        background:
-          radial-gradient(
-            ellipse at 50% 44%,
-            rgb(37 112 70 / 34%) 0%,
-            rgb(20 85 50 / 10%) 42%,
-            transparent 72%
-          ),
-          #145532;
-      }
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior: none;
+    }
 
-      main {
-        min-height: 100vh;
-        min-height: 100svh;
-      }
+    body {
+      background:
+        radial-gradient(ellipse at 50% 44%,
+          rgb(37 112 70 / 34%) 0%,
+          rgb(20 85 50 / 10%) 42%,
+          transparent 72%),
+        #145532;
+    }
 
-      .screen {
-        position: relative;
-        display: grid;
-        min-height: 100vh;
-        min-height: 100svh;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-      }
+    main {
+      min-height: 100vh;
+      min-height: 100svh;
+    }
 
-      .hero {
-        position: relative;
-        display: grid;
-        width: min(100%, 1100px);
-        align-content: center;
-        justify-self: unsafe center;
-        padding: 36px 5vw 72px;
-      }
+    .screen {
+      position: relative;
+      display: grid;
+      min-height: 100vh;
+      min-height: 100svh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
 
-      .hero img {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
+    .hero {
+      position: relative;
+      display: grid;
+      width: min(100%, 1100px);
+      align-content: center;
+      justify-self: unsafe center;
+      padding: 36px 5vw 72px;
+    }
 
-      .portrait {
-        position: absolute;
-        top: 71%;
-        left: 50%;
-        width: 8.8%;
-        min-width: 51px;
-        translate: -50% 0;
-        transform-origin: 50% 90%;
-        animation: nod-and-laugh 7s ease-in-out infinite;
-        filter: drop-shadow(0 5px 7px rgb(0 0 0 / 22%));
-        will-change: transform;
-        -webkit-user-select: none;
-        user-select: none;
-      }
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-      .scroll-cue {
-        position: absolute;
-        bottom: 27px;
-        left: 50%;
-        display: grid;
-        justify-items: center;
-        gap: 7px;
-        color: rgb(215 224 193 / 66%);
-        font: 11px/1.4 Arial, sans-serif;
-        letter-spacing: 0.2em;
-        text-decoration: none;
-        transform: translateX(-50%);
-        transition: color 180ms ease;
-      }
+    .portrait {
+      position: absolute;
+      top: 71%;
+      left: 50%;
+      width: 8.8%;
+      min-width: 51px;
+      translate: -50% 0;
+      transform-origin: 50% 90%;
+      animation: nod-and-laugh 7s ease-in-out infinite;
+      filter: drop-shadow(0 5px 7px rgb(0 0 0 / 22%));
+      will-change: transform;
+      -webkit-user-select: none;
+      user-select: none;
+    }
 
-      .scroll-cue:hover,
-      .scroll-cue:focus-visible {
-        color: #d9e1be;
-      }
+    .scroll-cue {
+      position: absolute;
+      bottom: 27px;
+      left: 50%;
+      display: grid;
+      justify-items: center;
+      gap: 7px;
+      color: rgb(215 224 193 / 66%);
+      font: 11px/1.4 Arial, sans-serif;
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      transform: translateX(-50%);
+      transition: color 180ms ease;
+    }
 
-      .scroll-cue:focus-visible {
-        outline: 1px solid currentColor;
-        outline-offset: 6px;
-      }
+    .scroll-cue:hover,
+    .scroll-cue:focus-visible {
+      color: #d9e1be;
+    }
 
-      .scroll-arrow {
-        width: 18px;
-        height: 18px;
-        fill: none;
-        stroke: currentColor;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 1.5;
-        animation: arrow-bob 1.8s ease-in-out infinite;
-        will-change: transform;
-      }
+    .scroll-cue:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 6px;
+    }
 
-      .about-screen {
-        align-items: center;
-        justify-items: center;
-        padding: clamp(40px, 8vh, 88px) 8vw;
-        background:
-          radial-gradient(
-            ellipse at 50% 45%,
-            rgb(37 112 70 / 22%) 0%,
-            rgb(20 85 50 / 6%) 42%,
-            transparent 72%
-          ),
-          #145532;
-      }
+    .scroll-arrow {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+      animation: arrow-bob 1.8s ease-in-out infinite;
+      will-change: transform;
+    }
 
-      .about-content {
-        width: min(100%, 1012px);
-        color: #e7eadc;
-        font-family: "Hina Mincho", serif;
-      }
+    .about-screen {
+      align-items: center;
+      justify-items: center;
+      padding: clamp(40px, 8vh, 88px) 8vw;
+      background:
+        radial-gradient(ellipse at 50% 45%,
+          rgb(37 112 70 / 22%) 0%,
+          rgb(20 85 50 / 6%) 42%,
+          transparent 72%),
+        #145532;
+    }
 
+    .about-content {
+      width: min(100%, 1012px);
+      color: #e7eadc;
+      font-family: "Hina Mincho", serif;
+    }
+
+    .about-copy {
+      max-width: 912px;
+      margin-top: 0;
+      color: rgb(239 241 229 / 88%);
+      font-size: clamp(20px, calc(1.55vw + 4px), 22px);
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    .about-copy p {
+      margin: 0 0 20px;
+    }
+
+    @media (min-width: 1100px) {
       .about-copy {
-        max-width: 912px;
-        margin-top: 0;
-        color: rgb(239 241 229 / 88%);
-        font-size: clamp(20px, calc(1.55vw + 4px), 22px);
-        font-weight: 400;
-        line-height: 1.8;
+        width: calc(100% + 1in);
+        max-width: 1008px;
+      }
+    }
+
+    .focus-screen {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 48%,
+          rgb(37 112 70 / 24%) 0%,
+          rgb(20 85 50 / 7%) 44%,
+          transparent 72%),
+        #145532;
+    }
+
+    .blank-screen {
+      background: #145532;
+    }
+
+    .closing-screen {
+      place-items: center;
+      padding: 56px 6vw;
+      background:
+        radial-gradient(ellipse at 50% 46%,
+          rgb(37 112 70 / 26%) 0%,
+          rgb(20 85 50 / 8%) 48%,
+          transparent 74%),
+        #145532;
+    }
+
+    .closing-content {
+      width: min(100%, 680px);
+      color: #e7eadc;
+      text-align: center;
+    }
+
+    .closing-kicker {
+      margin: 0 0 17px;
+      color: rgb(217 225 190 / 65%);
+      font: 11px/1.4 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .closing-title {
+      margin: 0;
+      color: #f0ead7;
+      font: 400 clamp(42px, 7vw, 72px)/1.08 "Hina Mincho", Georgia, serif;
+      letter-spacing: -0.035em;
+    }
+
+    .closing-copy {
+      max-width: min(100%, 680px);
+      margin: 20px auto 0;
+      color: rgb(239 241 229 / 82%);
+      font: 15px/1.8 Arial, Helvetica, sans-serif;
+    }
+
+    .closing-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 17px;
+      color: #d9e1be;
+      font: 13px/1.5 Arial, Helvetica, sans-serif;
+      text-decoration-color: rgb(217 225 190 / 42%);
+      text-underline-offset: 5px;
+      transition:
+        color 180ms ease,
+        text-decoration-color 180ms ease;
+    }
+
+    .closing-link:hover {
+      color: #f0ead7;
+      text-decoration-color: currentColor;
+    }
+
+    .closing-contact {
+      display: grid;
+      gap: 12px;
+      margin: 30px auto 0;
+      text-align: left;
+    }
+
+    .closing-contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .closing-field {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid rgb(224 232 207 / 17%);
+      border-radius: 12px;
+      outline: none;
+      background: rgb(5 34 20 / 24%);
+      color: #f0ead7;
+      font: 13px/1.5 Arial, Helvetica, sans-serif;
+      transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .closing-field:focus {
+      border-color: rgb(217 225 190 / 46%);
+      background: rgb(5 34 20 / 36%);
+      box-shadow: 0 0 0 3px rgb(217 225 190 / 5%);
+    }
+
+    .closing-field::placeholder {
+      color: rgb(231 234 220 / 48%);
+    }
+
+    input.closing-field {
+      height: 46px;
+      padding: 0 14px;
+    }
+
+    textarea.closing-field {
+      min-height: 112px;
+      padding: 13px 14px;
+      resize: vertical;
+    }
+
+    .closing-form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .closing-mail-note {
+      margin: 0;
+      color: rgb(231 234 220 / 45%);
+      font: 10px/1.5 Arial, Helvetica, sans-serif;
+    }
+
+    .closing-submit {
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgb(217 225 190 / 31%);
+      border-radius: 12px;
+      background: rgb(217 225 190 / 12%);
+      color: #f0ead7;
+      cursor: pointer;
+      position: relative;
+      will-change: transform;
+      transition:
+        transform 180ms ease,
+        background-color 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .closing-submit svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 180ms ease;
+    }
+
+    .closing-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      background: #d9e1be;
+      color: #145532;
+      border-color: #d9e1be;
+      box-shadow: 0 6px 18px rgb(217 225 190 / 22%);
+    }
+
+    .closing-submit:active:not(:disabled) {
+      transform: scale(0.93);
+    }
+
+    .closing-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .closing-submit.is-sending {
+      background: rgb(217 225 190 / 20%);
+      border-color: rgb(217 225 190 / 50%);
+    }
+
+    .closing-submit.is-sending svg {
+      animation: closing-spin 0.75s linear infinite;
+    }
+
+    .closing-submit.is-success {
+      background: #257046;
+      color: #f0ead7;
+      border-color: #5edb92;
+      transform: scale(1.06);
+    }
+
+    @keyframes closing-spin {
+      from {
+        transform: rotate(0deg);
       }
 
-      .about-copy p {
-        margin: 0 0 20px;
+      to {
+        transform: rotate(360deg);
       }
+    }
 
-      @media (min-width: 1100px) {
-        .about-copy {
-          width: calc(100% + 1in);
-          max-width: 1008px;
-        }
-      }
+    .closing-submit:focus-visible,
+    .closing-link:focus-visible {
+      outline: 2px solid #d9e1be;
+      outline-offset: 4px;
+    }
 
-      .focus-screen {
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        background:
-          radial-gradient(
-            ellipse at 50% 48%,
-            rgb(37 112 70 / 24%) 0%,
-            rgb(20 85 50 / 7%) 44%,
-            transparent 72%
-          ),
-          #145532;
-      }
+    .closing-success {
+      margin: 18px auto 0;
+      max-width: 420px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      background: rgb(37 112 70 / 44%);
+      border: 1px solid rgb(217 225 190 / 32%);
+      color: #f0ead7;
+      font: 14px/1.5 Arial, Helvetica, sans-serif;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 320ms ease, transform 320ms ease;
+    }
 
-      .blank-screen {
-        background: #145532;
-      }
+    .closing-success.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-      .closing-screen {
-        place-items: center;
-        padding: 56px 6vw;
-        background:
-          radial-gradient(
-            ellipse at 50% 46%,
-            rgb(37 112 70 / 26%) 0%,
-            rgb(20 85 50 / 8%) 48%,
-            transparent 74%
-          ),
-          #145532;
-      }
+    .closing-signoff {
+      margin: 31px 0 0;
+      color: #d9e1be;
+      font: italic 19px/1.4 "Hina Mincho", Georgia, serif;
+    }
 
-      .closing-content {
-        width: min(100%, 680px);
-        color: #e7eadc;
-        text-align: center;
-      }
+    .assistant-screen {
+      place-items: center;
+      padding: 28px 5vw;
+      background:
+        radial-gradient(ellipse at 50% 45%,
+          rgb(37 112 70 / 24%) 0%,
+          rgb(20 85 50 / 7%) 48%,
+          transparent 74%),
+        #145532;
+    }
 
-      .closing-kicker {
-        margin: 0 0 17px;
-        color: rgb(217 225 190 / 65%);
-        font: 11px/1.4 Arial, Helvetica, sans-serif;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-      }
+    .assistant-panel {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      width: min(100%, 872px);
+      height: min(650px, calc(100svh - 56px));
+      min-height: min(480px, calc(100svh - 56px));
+      overflow: hidden;
+      border: 1px solid rgb(224 232 207 / 13%);
+      border-radius: 24px;
+      background: rgb(8 48 29 / 48%);
+      box-shadow: 0 24px 80px rgb(4 30 18 / 18%);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      will-change: transform;
+    }
 
-      .closing-title {
-        margin: 0;
-        color: #f0ead7;
-        font: 400 clamp(42px, 7vw, 72px)/1.08 "Hina Mincho", Georgia, serif;
-        letter-spacing: -0.035em;
-      }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+    }
 
-      .closing-copy {
-        max-width: min(100%, 680px);
-        margin: 20px auto 0;
-        color: rgb(239 241 229 / 82%);
-        font: 15px/1.8 Arial, Helvetica, sans-serif;
-      }
+    .assistant-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 26px;
+      border-bottom: 1px solid rgb(224 232 207 / 10%);
+    }
 
-      .closing-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 17px;
-        color: #d9e1be;
-        font: 13px/1.5 Arial, Helvetica, sans-serif;
-        text-decoration-color: rgb(217 225 190 / 42%);
-        text-underline-offset: 5px;
-        transition:
-          color 180ms ease,
-          text-decoration-color 180ms ease;
-      }
+    .assistant-identity {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-      .closing-link:hover {
-        color: #f0ead7;
-        text-decoration-color: currentColor;
-      }
+    .assistant-avatar {
+      display: grid;
+      width: 42px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid rgb(217 225 190 / 35%);
+      border-radius: 50%;
+      background: rgb(217 225 190 / 9%);
+      color: #e7eadc;
+      font: 500 17px/1 Arial, Helvetica, sans-serif;
+    }
 
-      .closing-contact {
-        display: grid;
-        gap: 12px;
-        margin: 30px auto 0;
-        text-align: left;
-      }
+    .assistant-name {
+      margin: 0;
+      color: #f0ead7;
+      font: 400 21px/1.2 "Hina Mincho", Georgia, serif;
+    }
 
-      .closing-contact-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
+    .assistant-subtitle {
+      margin: 4px 0 0;
+      color: rgb(231 234 220 / 55%);
+      font: 11px/1.3 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.04em;
+    }
 
-      .closing-field {
-        width: 100%;
-        min-width: 0;
-        border: 1px solid rgb(224 232 207 / 17%);
-        border-radius: 12px;
-        outline: none;
-        background: rgb(5 34 20 / 24%);
-        color: #f0ead7;
-        font: 13px/1.5 Arial, Helvetica, sans-serif;
-        transition:
-          border-color 180ms ease,
-          background-color 180ms ease,
-          box-shadow 180ms ease;
-      }
+    .assistant-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid rgb(217 225 190 / 13%);
+      border-radius: 999px;
+      color: rgb(231 234 220 / 66%);
+      font: 10px/1 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
-      .closing-field:focus {
-        border-color: rgb(217 225 190 / 46%);
-        background: rgb(5 34 20 / 36%);
-        box-shadow: 0 0 0 3px rgb(217 225 190 / 5%);
-      }
+    .assistant-status::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d4b879;
+      content: "";
+    }
 
-      .closing-field::placeholder {
-        color: rgb(231 234 220 / 48%);
-      }
+    .assistant-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-      input.closing-field {
-        height: 46px;
-        padding: 0 14px;
-      }
+    .assistant-reset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border: 1px solid rgb(217 225 190 / 22%);
+      border-radius: 999px;
+      background: transparent;
+      color: rgb(231 234 220 / 72%);
+      font: 11px/1 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+    }
 
-      textarea.closing-field {
-        min-height: 112px;
-        padding: 13px 14px;
-        resize: vertical;
-      }
+    .assistant-reset-btn:hover {
+      background: rgb(217 225 190 / 14%);
+      border-color: rgb(217 225 190 / 42%);
+      color: #f7f3e8;
+      transform: translateY(-1px);
+    }
 
-      .closing-form-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
+    .assistant-voice-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border: 1px solid rgb(217 225 190 / 22%);
+      border-radius: 999px;
+      background: rgb(217 225 190 / 9%);
+      color: #e7eadc;
+      font: 11px/1 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+    }
 
-      .closing-mail-note {
-        margin: 0;
-        color: rgb(231 234 220 / 45%);
-        font: 10px/1.5 Arial, Helvetica, sans-serif;
-      }
+    .assistant-voice-toggle:hover {
+      background: rgb(217 225 190 / 18%);
+      border-color: rgb(217 225 190 / 45%);
+      color: #f7f3e8;
+      transform: translateY(-1px);
+    }
 
-      .closing-submit {
-        flex: 0 0 44px;
-        width: 44px;
-        height: 44px;
-        display: grid;
-        place-items: center;
-        border: 1px solid rgb(217 225 190 / 31%);
-        border-radius: 12px;
-        background: rgb(217 225 190 / 12%);
-        color: #f0ead7;
-        cursor: pointer;
-        position: relative;
-        will-change: transform;
-        transition:
-          transform 180ms ease,
-          background-color 180ms ease,
-          color 180ms ease,
-          border-color 180ms ease,
-          box-shadow 180ms ease;
-      }
+    .assistant-voice-toggle.is-muted {
+      color: rgb(231 234 220 / 46%);
+      border-color: rgb(217 225 190 / 12%);
+      background: transparent;
+    }
 
-      .closing-submit svg {
-        width: 18px;
-        height: 18px;
-        transition: transform 180ms ease;
-      }
+    .assistant-voice-toggle svg[hidden],
+    [hidden] {
+      display: none !important;
+    }
 
-      .closing-submit:hover:not(:disabled) {
-        transform: translateY(-2px);
-        background: #d9e1be;
-        color: #145532;
-        border-color: #d9e1be;
-        box-shadow: 0 6px 18px rgb(217 225 190 / 22%);
-      }
+    .assistant-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      overflow: auto;
+      padding: 28px 26px;
+      scrollbar-color: rgb(217 225 190 / 22%) transparent;
+      scrollbar-width: thin;
+    }
 
-      .closing-submit:active:not(:disabled) {
-        transform: scale(0.93);
-      }
+    .assistant-message {
+      max-width: min(82%, 440px);
+      padding: 13px 16px;
+      border: 1px solid rgb(224 232 207 / 9%);
+      border-radius: 4px 18px 18px;
+      background: rgb(236 239 220 / 7%);
+      color: rgb(239 241 229 / 88%);
+      font: 14px/1.65 Arial, Helvetica, sans-serif;
+      overflow-wrap: anywhere;
+      animation: assistant-message-enter 360ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    }
 
-      .closing-submit:disabled {
-        opacity: 0.65;
-        cursor: not-allowed;
-      }
+    .assistant-message strong {
+      color: #f7f3e8;
+      font-weight: 700;
+    }
 
-      .closing-submit.is-sending {
-        background: rgb(217 225 190 / 20%);
-        border-color: rgb(217 225 190 / 50%);
-      }
+    .assistant-message p {
+      margin: 0 0 10px 0;
+    }
 
-      .closing-submit.is-sending svg {
-        animation: closing-spin 0.75s linear infinite;
-      }
+    .assistant-message p:last-child {
+      margin-bottom: 0;
+    }
 
-      .closing-submit.is-success {
-        background: #257046;
-        color: #f0ead7;
-        border-color: #5edb92;
-        transform: scale(1.06);
-      }
+    .assistant-message ul {
+      margin: 8px 0 10px 0;
+      padding-left: 18px;
+      list-style-type: disc;
+    }
 
-      @keyframes closing-spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
+    .assistant-message ul:last-child {
+      margin-bottom: 0;
+    }
 
-      .closing-submit:focus-visible,
-      .closing-link:focus-visible {
-        outline: 2px solid #d9e1be;
-        outline-offset: 4px;
-      }
+    .assistant-message li {
+      margin-bottom: 6px;
+      line-height: 1.55;
+    }
 
-      .closing-success {
-        margin: 18px auto 0;
-        max-width: 420px;
-        padding: 11px 18px;
-        border-radius: 12px;
-        background: rgb(37 112 70 / 44%);
-        border: 1px solid rgb(217 225 190 / 32%);
-        color: #f0ead7;
-        font: 14px/1.5 Arial, Helvetica, sans-serif;
-        text-align: center;
+    .assistant-message li:last-child {
+      margin-bottom: 0;
+    }
+
+    .assistant-message code {
+      font-family: monospace;
+      font-size: 0.9em;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    .assistant-message--user {
+      align-self: flex-end;
+      border-color: rgb(217 225 190 / 16%);
+      border-radius: 18px 4px 18px 18px;
+      background: rgb(217 225 190 / 13%);
+      color: #f0ead7;
+    }
+
+    .assistant-intro {
+      display: grid;
+      gap: 13px;
+      align-self: flex-start;
+      max-width: min(88%, 460px);
+    }
+
+    .assistant-intro .assistant-message {
+      max-width: 100%;
+    }
+
+    .assistant-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-left: 2px;
+    }
+
+    .assistant-suggestion {
+      padding: 8px 11px;
+      border: 1px solid rgb(217 225 190 / 16%);
+      border-radius: 999px;
+      background: transparent;
+      color: rgb(231 234 220 / 72%);
+      cursor: pointer;
+      font: 11px/1.3 Arial, Helvetica, sans-serif;
+      will-change: transform;
+      transition:
+        border-color 200ms ease,
+        background-color 200ms ease,
+        color 200ms ease,
+        transform 200ms ease;
+    }
+
+    .assistant-suggestion:hover {
+      transform: translateY(-1px);
+      border-color: rgb(217 225 190 / 38%);
+      background: rgb(217 225 190 / 7%);
+      color: #f0ead7;
+    }
+
+    .assistant-composer-wrap {
+      padding: 0 26px 19px;
+    }
+
+    .assistant-composer {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      padding: 9px 9px 9px 16px;
+      border: 1px solid rgb(224 232 207 / 18%);
+      border-radius: 17px;
+      background: rgb(5 34 20 / 28%);
+      transition:
+        border-color 200ms ease,
+        box-shadow 200ms ease,
+        background-color 200ms ease;
+    }
+
+    .assistant-composer:focus-within {
+      border-color: rgb(217 225 190 / 45%);
+      background: rgb(5 34 20 / 43%);
+      box-shadow: 0 0 0 3px rgb(217 225 190 / 5%);
+    }
+
+    .assistant-input {
+      flex: 1;
+      min-width: 0;
+      max-height: 120px;
+      padding: 8px 0;
+      resize: none;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #f0ead7;
+      font: 14px/1.5 Arial, Helvetica, sans-serif;
+    }
+
+    .assistant-input::placeholder {
+      color: rgb(231 234 220 / 43%);
+    }
+
+    .assistant-send {
+      display: grid;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border: 1px solid rgb(217 225 190 / 28%);
+      border-radius: 12px;
+      background: rgb(217 225 190 / 13%);
+      color: #f0ead7;
+      cursor: pointer;
+      will-change: transform;
+      transition:
+        background-color 200ms ease,
+        color 200ms ease,
+        opacity 200ms ease,
+        transform 200ms ease;
+    }
+
+    .assistant-send:not(:disabled):hover {
+      transform: translateY(-1px);
+      background: #d9e1be;
+      color: #145532;
+    }
+
+    .assistant-send:disabled {
+      opacity: 0.38;
+      cursor: default;
+    }
+
+    .assistant-send:focus-visible,
+    .assistant-suggestion:focus-visible {
+      outline: 2px solid #d9e1be;
+      outline-offset: 3px;
+    }
+
+    .assistant-send svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.7;
+    }
+
+    .assistant-note {
+      margin: 10px 4px 0;
+      color: rgb(231 234 220 / 40%);
+      font: 10px/1.4 Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    .assistant-typing {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 20px;
+    }
+
+    .assistant-typing span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgb(231 234 220 / 65%);
+      animation: assistant-typing 1s ease-in-out infinite;
+    }
+
+    .assistant-typing span:nth-child(2) {
+      animation-delay: 120ms;
+    }
+
+    .assistant-typing span:nth-child(3) {
+      animation-delay: 240ms;
+    }
+
+    @keyframes assistant-enter {
+      from {
         opacity: 0;
-        transform: translateY(-6px);
-        transition: opacity 320ms ease, transform 320ms ease;
+        transform: translateY(12px);
       }
 
-      .closing-success.visible {
+      to {
         opacity: 1;
         transform: translateY(0);
       }
+    }
 
-      .closing-signoff {
-        margin: 31px 0 0;
-        color: #d9e1be;
-        font: italic 19px/1.4 "Hina Mincho", Georgia, serif;
+    @keyframes assistant-message-enter {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
       }
 
-      .assistant-screen {
-        place-items: center;
-        padding: 28px 5vw;
-        background:
-          radial-gradient(
-            ellipse at 50% 45%,
-            rgb(37 112 70 / 24%) 0%,
-            rgb(20 85 50 / 7%) 48%,
-            transparent 74%
-          ),
-          #145532;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes assistant-typing {
+
+      0%,
+      60%,
+      100% {
+        opacity: 0.35;
+        transform: translateY(0);
       }
 
-      .assistant-panel {
-        display: grid;
-        grid-template-rows: auto minmax(0, 1fr) auto;
-        width: min(100%, 872px);
-        height: min(650px, calc(100svh - 56px));
-        min-height: min(480px, calc(100svh - 56px));
-        overflow: hidden;
-        border: 1px solid rgb(224 232 207 / 13%);
-        border-radius: 24px;
-        background: rgb(8 48 29 / 48%);
-        box-shadow: 0 24px 80px rgb(4 30 18 / 18%);
-        -webkit-backdrop-filter: blur(18px);
-        backdrop-filter: blur(18px);
-        will-change: transform;
+      30% {
+        opacity: 1;
+        transform: translateY(-3px);
+      }
+    }
+
+    .focus-orbit {
+      position: relative;
+      width: min(70vw, 560px);
+      aspect-ratio: 1;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      isolation: isolate;
+    }
+
+    .focus-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: 0;
+      color: #f0ead7;
+      font: 300 clamp(32px, 5vw, 54px)/1.1 Arial, Helvetica, sans-serif;
+      letter-spacing: -0.055em;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+      filter: blur(0);
+      transition: filter 360ms ease;
+    }
+
+    .focus-orbit:has(.focus-item:hover, .focus-item:focus-visible) .focus-item:not(:hover, :focus-visible) {
+      filter: blur(2.5px) saturate(0.65);
+    }
+
+    .focus-screen:has(.focus-item:hover) .focus-title,
+    .focus-screen:has(.focus-item:focus-visible) .focus-title {
+      filter: blur(2.5px);
+    }
+
+    .focus-item {
+      position: absolute;
+      top: var(--y);
+      left: var(--x);
+      z-index: 1;
+      display: grid;
+      width: 72px;
+      height: 72px;
+      place-items: center;
+      opacity: 0.84;
+      transform: translate(-50%, -50%) scale(var(--item-scale, 1));
+      transition:
+        opacity 280ms ease,
+        filter 360ms ease;
+      filter: saturate(0.9);
+      will-change: filter;
+      outline: none;
+    }
+
+    .focus-item:hover,
+    .focus-item:focus-visible {
+      z-index: 3;
+      opacity: 1;
+      filter: saturate(1.08) drop-shadow(0 8px 14px rgb(0 0 0 / 24%));
+    }
+
+    .focus-image {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--asset-width, 72px);
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 7px rgb(0 0 0 / 24%));
+      transform: translate(-50%, -50%) scale(var(--image-scale, 1));
+      transition: transform 360ms cubic-bezier(0.2, 0.75, 0.25, 1);
+      will-change: transform;
+    }
+
+    .focus-item:hover .focus-image,
+    .focus-item:focus-visible .focus-image {
+      transform: translate(-50%, -50%) scale(var(--hover-image-scale, 1.14));
+    }
+
+    .focus-caption {
+      position: absolute;
+      z-index: 2;
+      width: max-content;
+      max-width: 160px;
+      color: #d9e1be;
+      font: italic 15px/1.35 "Hina Mincho", Georgia, serif;
+      opacity: 0;
+      pointer-events: none;
+      text-shadow: 0 1px 5px #145532;
+      scale: 0.94;
+      transition:
+        opacity 240ms ease,
+        scale 300ms cubic-bezier(0.2, 0.75, 0.25, 1);
+    }
+
+    .focus-item:hover .focus-caption,
+    .focus-item:focus-visible .focus-caption {
+      opacity: 1;
+      scale: 1;
+    }
+
+    .focus-item:nth-child(1) {
+      --asset-width: 74.4px;
+      --image-scale: 1.05;
+      --hover-image-scale: 1.197;
+      --x: 50%;
+      --y: 8.4%;
+    }
+
+    .focus-item:nth-child(1) .focus-caption {
+      top: calc(100% + 9px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .focus-item:nth-child(2) {
+      --asset-width: 74.1px;
+      --image-scale: 1.05;
+      --hover-image-scale: 1.197;
+      --x: 78.193%;
+      --y: 19.41%;
+    }
+
+    .focus-item:nth-child(2) .focus-caption {
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .focus-item:nth-child(3) {
+      --asset-width: 64.9px;
+      --image-scale: 1.05;
+      --hover-image-scale: 1.197;
+      --x: 91.505%;
+      --y: 47.185%;
+    }
+
+    .focus-item:nth-child(3) .focus-caption {
+      top: 50%;
+      right: calc(100% + 10px);
+      transform: translateY(-50%);
+    }
+
+    .focus-item:nth-child(4) {
+      --asset-width: 97.4px;
+      --x: 83.52%;
+      --y: 74.637%;
+    }
+
+    .focus-item:nth-child(4) .focus-caption {
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .focus-item:nth-child(5) {
+      --asset-width: 121.9px;
+      --x: 50.272%;
+      --y: 91.599%;
+    }
+
+    .focus-item:nth-child(5) .focus-caption {
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .focus-item:nth-child(6) {
+      --asset-width: 106.9px;
+      --x: 16.267%;
+      --y: 74.345%;
+    }
+
+    .focus-item:nth-child(6) .focus-caption {
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .focus-item:nth-child(7) {
+      --asset-width: 99.7px;
+      --x: 8.493%;
+      --y: 47.217%;
+    }
+
+    .focus-item:nth-child(7) .focus-caption {
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .focus-item:nth-child(8) {
+      --asset-width: 78.2px;
+      --image-scale: 1.05;
+      --hover-image-scale: 1.197;
+      --x: 21.423%;
+      --y: 19.769%;
+    }
+
+    .focus-item:nth-child(8) .focus-caption {
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Scroll-triggered section reveal */
+    .will-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 640ms cubic-bezier(0.2, 0.75, 0.25, 1),
+        transform 640ms cubic-bezier(0.2, 0.75, 0.25, 1);
+    }
+
+    .will-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* .focus-title uses translate(-50%,-50%) for centering — preserve it during reveal */
+    .focus-title.will-reveal {
+      transform: translate(-50%, -50%) translateY(18px);
+    }
+
+    .focus-title.will-reveal.revealed {
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes arrow-bob {
+
+      0%,
+      100% {
+        transform: translateY(0);
       }
 
-      .visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        clip-path: inset(50%);
+      50% {
+        transform: translateY(4px);
+      }
+    }
+
+    .portrait-image,
+    .wink {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .wink {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      animation: wink 7s linear infinite;
+      will-change: opacity;
+    }
+
+    @keyframes nod-and-laugh {
+
+      0%,
+      36%,
+      100% {
+        transform: rotate(0) translateY(0);
       }
 
-      .assistant-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 22px 26px;
-        border-bottom: 1px solid rgb(224 232 207 / 10%);
+      40% {
+        transform: rotate(-3deg) translateY(3px);
       }
 
-      .assistant-identity {
-        display: flex;
-        align-items: center;
-        gap: 13px;
+      44%,
+      48% {
+        transform: rotate(2deg) translateY(-2px);
       }
 
-      .assistant-avatar {
-        display: grid;
-        width: 42px;
-        aspect-ratio: 1;
-        place-items: center;
-        border: 1px solid rgb(217 225 190 / 35%);
-        border-radius: 50%;
-        background: rgb(217 225 190 / 9%);
-        color: #e7eadc;
-        font: 500 17px/1 Arial, Helvetica, sans-serif;
+      52% {
+        transform: rotate(0) translateY(0);
       }
 
-      .assistant-name {
-        margin: 0;
-        color: #f0ead7;
-        font: 400 21px/1.2 "Hina Mincho", Georgia, serif;
+      74% {
+        transform: rotate(-1deg) translateY(-4px);
       }
 
-      .assistant-subtitle {
-        margin: 4px 0 0;
-        color: rgb(231 234 220 / 55%);
-        font: 11px/1.3 Arial, Helvetica, sans-serif;
-        letter-spacing: 0.04em;
+      77% {
+        transform: rotate(1deg) translateY(0);
       }
 
-      .assistant-status {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 7px 10px;
-        border: 1px solid rgb(217 225 190 / 13%);
-        border-radius: 999px;
-        color: rgb(231 234 220 / 66%);
-        font: 10px/1 Arial, Helvetica, sans-serif;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        white-space: nowrap;
+      80% {
+        transform: rotate(0) translateY(-2px);
       }
 
-      .assistant-status::before {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #d4b879;
-        content: "";
+      83% {
+        transform: rotate(0) translateY(0);
+      }
+    }
+
+    @keyframes wink {
+
+      0%,
+      18%,
+      22%,
+      100% {
+        opacity: 0;
       }
 
-      .assistant-header-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+      19%,
+      21% {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 24px 4vw 72px;
       }
 
-      .assistant-reset-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding: 5px 12px;
-        border: 1px solid rgb(217 225 190 / 22%);
-        border-radius: 999px;
-        background: transparent;
-        color: rgb(231 234 220 / 72%);
-        font: 11px/1 Arial, Helvetica, sans-serif;
-        letter-spacing: 0.03em;
-        cursor: pointer;
-        transition:
-          background-color 180ms ease,
-          border-color 180ms ease,
-          color 180ms ease,
-          transform 180ms ease;
+      .scroll-cue {
+        bottom: 20px;
+        font-size: 9px;
       }
 
-      .assistant-reset-btn:hover {
-        background: rgb(217 225 190 / 14%);
-        border-color: rgb(217 225 190 / 42%);
-        color: #f7f3e8;
-        transform: translateY(-1px);
+      .portrait {
+        width: 11.2%;
+        min-width: 43px;
+        top: 70%;
       }
 
-      .assistant-voice-toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 5px 12px;
-        border: 1px solid rgb(217 225 190 / 22%);
-        border-radius: 999px;
-        background: rgb(217 225 190 / 9%);
-        color: #e7eadc;
-        font: 11px/1 Arial, Helvetica, sans-serif;
-        letter-spacing: 0.04em;
-        cursor: pointer;
-        transition:
-          background-color 180ms ease,
-          border-color 180ms ease,
-          color 180ms ease,
-          transform 180ms ease;
+      .about-screen {
+        padding: 52px 8vw;
       }
 
-      .assistant-voice-toggle:hover {
-        background: rgb(217 225 190 / 18%);
-        border-color: rgb(217 225 190 / 45%);
-        color: #f7f3e8;
-        transform: translateY(-1px);
+      .about-copy {
+        font-size: 20px;
+        line-height: 1.75;
       }
 
-      .assistant-voice-toggle.is-muted {
-        color: rgb(231 234 220 / 46%);
-        border-color: rgb(217 225 190 / 12%);
-        background: transparent;
-      }
-
-      .assistant-voice-toggle svg[hidden],
-      [hidden] {
-        display: none !important;
-      }
-
-      .assistant-messages {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        overflow: auto;
-        padding: 28px 26px;
-        scrollbar-color: rgb(217 225 190 / 22%) transparent;
-        scrollbar-width: thin;
-      }
-
-      .assistant-message {
-        max-width: min(82%, 440px);
-        padding: 13px 16px;
-        border: 1px solid rgb(224 232 207 / 9%);
-        border-radius: 4px 18px 18px;
-        background: rgb(236 239 220 / 7%);
-        color: rgb(239 241 229 / 88%);
-        font: 14px/1.65 Arial, Helvetica, sans-serif;
-        overflow-wrap: anywhere;
-        animation: assistant-message-enter 360ms cubic-bezier(0.2, 0.75, 0.25, 1)
-          both;
-      }
-
-      .assistant-message strong {
-        color: #f7f3e8;
-        font-weight: 700;
-      }
-
-      .assistant-message p {
-        margin: 0 0 10px 0;
-      }
-
-      .assistant-message p:last-child {
-        margin-bottom: 0;
-      }
-
-      .assistant-message ul {
-        margin: 8px 0 10px 0;
-        padding-left: 18px;
-        list-style-type: disc;
-      }
-
-      .assistant-message ul:last-child {
-        margin-bottom: 0;
-      }
-
-      .assistant-message li {
-        margin-bottom: 6px;
-        line-height: 1.55;
-      }
-
-      .assistant-message li:last-child {
-        margin-bottom: 0;
-      }
-
-      .assistant-message code {
-        font-family: monospace;
-        font-size: 0.9em;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 2px 5px;
-        border-radius: 4px;
-      }
-
-      .assistant-message--user {
-        align-self: flex-end;
-        border-color: rgb(217 225 190 / 16%);
-        border-radius: 18px 4px 18px 18px;
-        background: rgb(217 225 190 / 13%);
-        color: #f0ead7;
-      }
-
-      .assistant-intro {
-        display: grid;
-        gap: 13px;
-        align-self: flex-start;
-        max-width: min(88%, 460px);
-      }
-
-      .assistant-intro .assistant-message {
-        max-width: 100%;
-      }
-
-      .assistant-suggestions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding-left: 2px;
-      }
-
-      .assistant-suggestion {
-        padding: 8px 11px;
-        border: 1px solid rgb(217 225 190 / 16%);
-        border-radius: 999px;
-        background: transparent;
-        color: rgb(231 234 220 / 72%);
-        cursor: pointer;
-        font: 11px/1.3 Arial, Helvetica, sans-serif;
-        will-change: transform;
-        transition:
-          border-color 200ms ease,
-          background-color 200ms ease,
-          color 200ms ease,
-          transform 200ms ease;
-      }
-
-      .assistant-suggestion:hover {
-        transform: translateY(-1px);
-        border-color: rgb(217 225 190 / 38%);
-        background: rgb(217 225 190 / 7%);
-        color: #f0ead7;
-      }
-
-      .assistant-composer-wrap {
-        padding: 0 26px 19px;
-      }
-
-      .assistant-composer {
-        display: flex;
-        align-items: flex-end;
-        gap: 10px;
-        padding: 9px 9px 9px 16px;
-        border: 1px solid rgb(224 232 207 / 18%);
-        border-radius: 17px;
-        background: rgb(5 34 20 / 28%);
-        transition:
-          border-color 200ms ease,
-          box-shadow 200ms ease,
-          background-color 200ms ease;
-      }
-
-      .assistant-composer:focus-within {
-        border-color: rgb(217 225 190 / 45%);
-        background: rgb(5 34 20 / 43%);
-        box-shadow: 0 0 0 3px rgb(217 225 190 / 5%);
-      }
-
-      .assistant-input {
-        flex: 1;
-        min-width: 0;
-        max-height: 120px;
-        padding: 8px 0;
-        resize: none;
-        border: 0;
-        outline: 0;
-        background: transparent;
-        color: #f0ead7;
-        font: 14px/1.5 Arial, Helvetica, sans-serif;
-      }
-
-      .assistant-input::placeholder {
-        color: rgb(231 234 220 / 43%);
-      }
-
-      .assistant-send {
-        display: grid;
-        flex: 0 0 40px;
-        width: 40px;
-        height: 40px;
-        place-items: center;
-        border: 1px solid rgb(217 225 190 / 28%);
-        border-radius: 12px;
-        background: rgb(217 225 190 / 13%);
-        color: #f0ead7;
-        cursor: pointer;
-        will-change: transform;
-        transition:
-          background-color 200ms ease,
-          color 200ms ease,
-          opacity 200ms ease,
-          transform 200ms ease;
-      }
-
-      .assistant-send:not(:disabled):hover {
-        transform: translateY(-1px);
-        background: #d9e1be;
-        color: #145532;
-      }
-
-      .assistant-send:disabled {
-        opacity: 0.38;
-        cursor: default;
-      }
-
-      .assistant-send:focus-visible,
-      .assistant-suggestion:focus-visible {
-        outline: 2px solid #d9e1be;
-        outline-offset: 3px;
-      }
-
-      .assistant-send svg {
-        width: 17px;
-        height: 17px;
-        fill: none;
-        stroke: currentColor;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 1.7;
-      }
-
-      .assistant-note {
-        margin: 10px 4px 0;
-        color: rgb(231 234 220 / 40%);
-        font: 10px/1.4 Arial, Helvetica, sans-serif;
-        text-align: center;
-      }
-
-      .assistant-typing {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        min-height: 20px;
-      }
-
-      .assistant-typing span {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: rgb(231 234 220 / 65%);
-        animation: assistant-typing 1s ease-in-out infinite;
-      }
-
-      .assistant-typing span:nth-child(2) {
-        animation-delay: 120ms;
-      }
-
-      .assistant-typing span:nth-child(3) {
-        animation-delay: 240ms;
-      }
-
-      @keyframes assistant-enter {
-        from {
-          opacity: 0;
-          transform: translateY(12px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes assistant-message-enter {
-        from {
-          opacity: 0;
-          transform: translateY(7px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes assistant-typing {
-        0%,
-        60%,
-        100% {
-          opacity: 0.35;
-          transform: translateY(0);
-        }
-
-        30% {
-          opacity: 1;
-          transform: translateY(-3px);
-        }
+      .about-copy p {
+        margin-bottom: 16px;
       }
 
       .focus-orbit {
-        position: relative;
-        width: min(70vw, 560px);
-        aspect-ratio: 1;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        isolation: isolate;
-      }
-
-      .focus-title {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: 0;
-        color: #f0ead7;
-        font: 300 clamp(32px, 5vw, 54px)/1.1 Arial, Helvetica, sans-serif;
-        letter-spacing: -0.055em;
-        white-space: nowrap;
-        transform: translate(-50%, -50%);
-        filter: blur(0);
-        transition: filter 360ms ease;
-      }
-
-      .focus-orbit:has(.focus-item:hover, .focus-item:focus-visible)
-        .focus-item:not(:hover, :focus-visible) {
-        filter: blur(2.5px) saturate(0.65);
-      }
-
-      .focus-screen:has(.focus-item:hover) .focus-title,
-      .focus-screen:has(.focus-item:focus-visible) .focus-title {
-        filter: blur(2.5px);
+        width: 86vw;
       }
 
       .focus-item {
-        position: absolute;
-        top: var(--y);
-        left: var(--x);
-        z-index: 1;
-        display: grid;
-        width: 72px;
-        height: 72px;
-        place-items: center;
-        opacity: 0.84;
-        transform: translate(-50%, -50%) scale(var(--item-scale, 1));
-        transition:
-          opacity 280ms ease,
-          filter 360ms ease;
-        filter: saturate(0.9);
-        will-change: filter;
-        outline: none;
-      }
-
-      .focus-item:hover,
-      .focus-item:focus-visible {
-        z-index: 3;
-        opacity: 1;
-        filter: saturate(1.08) drop-shadow(0 8px 14px rgb(0 0 0 / 24%));
+        width: 56px;
+        height: 56px;
       }
 
       .focus-image {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: var(--asset-width, 72px);
-        height: 100%;
-        object-fit: contain;
-        filter: drop-shadow(0 4px 7px rgb(0 0 0 / 24%));
-        transform: translate(-50%, -50%) scale(var(--image-scale, 1));
-        transition: transform 360ms cubic-bezier(0.2, 0.75, 0.25, 1);
-        will-change: transform;
-      }
-
-      .focus-item:hover .focus-image,
-      .focus-item:focus-visible .focus-image {
-        transform: translate(-50%, -50%) scale(var(--hover-image-scale, 1.14));
-      }
-
-      .focus-caption {
-        position: absolute;
-        z-index: 2;
-        width: max-content;
-        max-width: 160px;
-        color: #d9e1be;
-        font: italic 15px/1.35 "Hina Mincho", Georgia, serif;
-        opacity: 0;
-        pointer-events: none;
-        text-shadow: 0 1px 5px #145532;
-        scale: 0.94;
-        transition:
-          opacity 240ms ease,
-          scale 300ms cubic-bezier(0.2, 0.75, 0.25, 1);
-      }
-
-      .focus-item:hover .focus-caption,
-      .focus-item:focus-visible .focus-caption {
-        opacity: 1;
-        scale: 1;
+        width: var(--asset-mobile-width, 56px);
       }
 
       .focus-item:nth-child(1) {
-        --asset-width: 74.4px;
-        --image-scale: 1.05;
-        --hover-image-scale: 1.197;
+        --asset-mobile-width: 58px;
         --x: 50%;
         --y: 8.4%;
       }
 
-      .focus-item:nth-child(1) .focus-caption {
-        top: calc(100% + 9px);
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
       .focus-item:nth-child(2) {
-        --asset-width: 74.1px;
-        --image-scale: 1.05;
-        --hover-image-scale: 1.197;
-        --x: 78.193%;
-        --y: 19.41%;
-      }
-
-      .focus-item:nth-child(2) .focus-caption {
-        top: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%);
+        --asset-mobile-width: 58px;
+        --x: 76.884%;
+        --y: 18.254%;
       }
 
       .focus-item:nth-child(3) {
-        --asset-width: 64.9px;
-        --image-scale: 1.05;
-        --hover-image-scale: 1.197;
-        --x: 91.505%;
-        --y: 47.185%;
-      }
-
-      .focus-item:nth-child(3) .focus-caption {
-        top: 50%;
-        right: calc(100% + 10px);
-        transform: translateY(-50%);
+        --asset-mobile-width: 50px;
+        --x: 91.225%;
+        --y: 44.43%;
       }
 
       .focus-item:nth-child(4) {
-        --asset-width: 97.4px;
-        --x: 83.52%;
-        --y: 74.637%;
-      }
-
-      .focus-item:nth-child(4) .focus-caption {
-        top: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%);
+        --asset-mobile-width: 76px;
+        --x: 86.452%;
+        --y: 70.045%;
       }
 
       .focus-item:nth-child(5) {
-        --asset-width: 121.9px;
-        --x: 50.272%;
-        --y: 91.599%;
-      }
-
-      .focus-item:nth-child(5) .focus-caption {
-        bottom: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%);
+        --asset-mobile-width: 95px;
+        --x: 50.46%;
+        --y: 91.597%;
       }
 
       .focus-item:nth-child(6) {
-        --asset-width: 106.9px;
-        --x: 16.267%;
-        --y: 74.345%;
-      }
-
-      .focus-item:nth-child(6) .focus-caption {
-        top: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%);
+        --asset-mobile-width: 83px;
+        --x: 13.282%;
+        --y: 69.553%;
       }
 
       .focus-item:nth-child(7) {
-        --asset-width: 99.7px;
-        --x: 8.493%;
-        --y: 47.217%;
-      }
-
-      .focus-item:nth-child(7) .focus-caption {
-        top: calc(100% + 12px);
-        left: 50%;
-        transform: translateX(-50%);
+        --asset-mobile-width: 78px;
+        --x: 8.774%;
+        --y: 44.432%;
       }
 
       .focus-item:nth-child(8) {
-        --asset-width: 78.2px;
-        --image-scale: 1.05;
-        --hover-image-scale: 1.197;
-        --x: 21.423%;
-        --y: 19.769%;
+        --asset-mobile-width: 61px;
+        --x: 22.53%;
+        --y: 18.76%;
       }
 
-      .focus-item:nth-child(8) .focus-caption {
-        top: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%);
+      .focus-caption {
+        max-width: 120px;
+        font-size: 12px;
       }
 
-      /* Scroll-triggered section reveal */
+      .assistant-screen {
+        padding: 18px 4vw;
+      }
+
+      .assistant-panel {
+        height: min(650px, calc(100svh - 36px));
+        min-height: min(460px, calc(100svh - 36px));
+        border-radius: 20px;
+      }
+
+      .assistant-header {
+        padding: 17px 16px;
+      }
+
+      .assistant-avatar {
+        width: 38px;
+      }
+
+      .assistant-name {
+        font-size: 19px;
+      }
+
+      .assistant-status {
+        gap: 6px;
+        padding: 7px 8px;
+        font-size: 9px;
+      }
+
+      .assistant-messages {
+        gap: 15px;
+        padding: 22px 16px;
+      }
+
+      .assistant-message {
+        max-width: 90%;
+        padding: 11px 13px;
+        font-size: 13px;
+      }
+
+      .assistant-intro {
+        max-width: 96%;
+      }
+
+      .assistant-composer-wrap {
+        padding: 0 14px 14px;
+      }
+
+      .assistant-composer {
+        padding-left: 12px;
+      }
+
+      .assistant-input {
+        font-size: 13px;
+      }
+
+      .closing-screen {
+        padding: 36px 7vw;
+      }
+
+      .closing-copy {
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .closing-contact {
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .closing-contact-row {
+        gap: 9px;
+      }
+
+      input.closing-field {
+        height: 44px;
+        padding: 0 11px;
+        font-size: 12px;
+      }
+
+      textarea.closing-field {
+        min-height: 96px;
+        padding: 11px;
+        font-size: 12px;
+      }
+
+      .closing-signoff {
+        margin-top: 24px;
+      }
+
+      .focus-item:nth-child(7) .focus-caption {
+        top: calc(100% + 16px);
+        left: calc(100% + 30px);
+        transform: none;
+      }
+
+    }
+
+    @media (max-width: 300px) {
+      .focus-item {
+        --item-scale: 0.76;
+      }
+
+      .focus-item:nth-child(2) {
+        --x: 77.326%;
+        --y: 18.633%;
+      }
+
+      .focus-item:nth-child(3) {
+        --x: 91.337%;
+        --y: 45.33%;
+      }
+
+      .focus-item:nth-child(4) {
+        --x: 85.599%;
+        --y: 71.524%;
+      }
+
+      .focus-item:nth-child(5) {
+        --x: 50.433%;
+        --y: 91.598%;
+      }
+
+      .focus-item:nth-child(6) {
+        --x: 14.18%;
+        --y: 71.153%;
+      }
+
+      .focus-item:nth-child(7) {
+        --x: 8.657%;
+        --y: 45.379%;
+      }
+
+      .focus-item:nth-child(8) {
+        --x: 22.133%;
+        --y: 19.114%;
+      }
+    }
+
+    @media (max-width: 240px) {
+      .focus-item {
+        --item-scale: 0.7;
+      }
+
+      .focus-item:nth-child(2) {
+        --x: 76.866%;
+        --y: 18.238%;
+      }
+
+      .focus-item:nth-child(3) {
+        --x: 91.22%;
+        --y: 44.393%;
+      }
+
+      .focus-item:nth-child(4) {
+        --x: 86.486%;
+        --y: 69.983%;
+      }
+
+      .focus-item:nth-child(5) {
+        --x: 50.463%;
+        --y: 91.597%;
+      }
+
+      .focus-item:nth-child(6) {
+        --x: 13.247%;
+        --y: 69.488%;
+      }
+
+      .focus-item:nth-child(7) {
+        --x: 8.779%;
+        --y: 44.394%;
+      }
+
+      .focus-item:nth-child(8) {
+        --x: 22.545%;
+        --y: 18.746%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .portrait,
+      .wink,
+      .scroll-arrow,
+      .assistant-message,
+      .assistant-typing span {
+        animation: none;
+      }
+
       .will-reveal {
-        opacity: 0;
-        transform: translateY(18px);
-        transition:
-          opacity 640ms cubic-bezier(0.2, 0.75, 0.25, 1),
-          transform 640ms cubic-bezier(0.2, 0.75, 0.25, 1);
-      }
-
-      .will-reveal.revealed {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
+        transition: none;
       }
 
-      /* .focus-title uses translate(-50%,-50%) for centering — preserve it during reveal */
-      .focus-title.will-reveal {
-        transform: translate(-50%, -50%) translateY(18px);
+      .assistant-panel,
+      .closing-content,
+      .assistant-message,
+      .assistant-suggestion,
+      .assistant-composer,
+      .assistant-send,
+      .closing-link,
+      .closing-field,
+      .closing-submit {
+        transition: none;
       }
-
-      .focus-title.will-reveal.revealed {
-        transform: translate(-50%, -50%);
-      }
-
-      @keyframes arrow-bob {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(4px);
-        }
-      }
-
-      .portrait-image,
-      .wink {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
-
-      .wink {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        pointer-events: none;
-        animation: wink 7s linear infinite;
-        will-change: opacity;
-      }
-
-      @keyframes nod-and-laugh {
-        0%,
-        36%,
-        100% {
-          transform: rotate(0) translateY(0);
-        }
-
-        40% {
-          transform: rotate(-3deg) translateY(3px);
-        }
-
-        44%,
-        48% {
-          transform: rotate(2deg) translateY(-2px);
-        }
-
-        52% {
-          transform: rotate(0) translateY(0);
-        }
-
-        74% {
-          transform: rotate(-1deg) translateY(-4px);
-        }
-
-        77% {
-          transform: rotate(1deg) translateY(0);
-        }
-
-        80% {
-          transform: rotate(0) translateY(-2px);
-        }
-
-        83% {
-          transform: rotate(0) translateY(0);
-        }
-      }
-
-      @keyframes wink {
-        0%,
-        18%,
-        22%,
-        100% {
-          opacity: 0;
-        }
-
-        19%,
-        21% {
-          opacity: 1;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .hero {
-          padding: 24px 4vw 72px;
-        }
-
-        .scroll-cue {
-          bottom: 20px;
-          font-size: 9px;
-        }
-
-        .portrait {
-          width: 11.2%;
-          min-width: 43px;
-          top: 70%;
-        }
-
-        .about-screen {
-          padding: 52px 8vw;
-        }
-
-        .about-copy {
-          font-size: 20px;
-          line-height: 1.75;
-        }
-
-        .about-copy p {
-          margin-bottom: 16px;
-        }
-
-        .focus-orbit {
-          width: 86vw;
-        }
-
-        .focus-item {
-          width: 56px;
-          height: 56px;
-        }
-
-        .focus-image {
-          width: var(--asset-mobile-width, 56px);
-        }
-
-        .focus-item:nth-child(1) {
-          --asset-mobile-width: 58px;
-          --x: 50%;
-          --y: 8.4%;
-        }
-
-        .focus-item:nth-child(2) {
-          --asset-mobile-width: 58px;
-          --x: 76.884%;
-          --y: 18.254%;
-        }
-
-        .focus-item:nth-child(3) {
-          --asset-mobile-width: 50px;
-          --x: 91.225%;
-          --y: 44.43%;
-        }
-
-        .focus-item:nth-child(4) {
-          --asset-mobile-width: 76px;
-          --x: 86.452%;
-          --y: 70.045%;
-        }
-
-        .focus-item:nth-child(5) {
-          --asset-mobile-width: 95px;
-          --x: 50.46%;
-          --y: 91.597%;
-        }
-
-        .focus-item:nth-child(6) {
-          --asset-mobile-width: 83px;
-          --x: 13.282%;
-          --y: 69.553%;
-        }
-
-        .focus-item:nth-child(7) {
-          --asset-mobile-width: 78px;
-          --x: 8.774%;
-          --y: 44.432%;
-        }
-
-        .focus-item:nth-child(8) {
-          --asset-mobile-width: 61px;
-          --x: 22.53%;
-          --y: 18.76%;
-        }
-
-        .focus-caption {
-          max-width: 120px;
-          font-size: 12px;
-        }
-
-        .assistant-screen {
-          padding: 18px 4vw;
-        }
-
-        .assistant-panel {
-          height: min(650px, calc(100svh - 36px));
-          min-height: min(460px, calc(100svh - 36px));
-          border-radius: 20px;
-        }
-
-        .assistant-header {
-          padding: 17px 16px;
-        }
-
-        .assistant-avatar {
-          width: 38px;
-        }
-
-        .assistant-name {
-          font-size: 19px;
-        }
-
-        .assistant-status {
-          gap: 6px;
-          padding: 7px 8px;
-          font-size: 9px;
-        }
-
-        .assistant-messages {
-          gap: 15px;
-          padding: 22px 16px;
-        }
-
-        .assistant-message {
-          max-width: 90%;
-          padding: 11px 13px;
-          font-size: 13px;
-        }
-
-        .assistant-intro {
-          max-width: 96%;
-        }
-
-        .assistant-composer-wrap {
-          padding: 0 14px 14px;
-        }
-
-        .assistant-composer {
-          padding-left: 12px;
-        }
-
-        .assistant-input {
-          font-size: 13px;
-        }
-
-        .closing-screen {
-          padding: 36px 7vw;
-        }
-
-        .closing-copy {
-          margin-top: 16px;
-          font-size: 14px;
-          line-height: 1.7;
-        }
-
-        .closing-contact {
-          gap: 10px;
-          margin-top: 24px;
-        }
-
-        .closing-contact-row {
-          gap: 9px;
-        }
-
-        input.closing-field {
-          height: 44px;
-          padding: 0 11px;
-          font-size: 12px;
-        }
-
-        textarea.closing-field {
-          min-height: 96px;
-          padding: 11px;
-          font-size: 12px;
-        }
-
-        .closing-signoff {
-          margin-top: 24px;
-        }
-
-        .focus-item:nth-child(7) .focus-caption {
-          top: calc(100% + 16px);
-          left: calc(100% + 30px);
-          transform: none;
-        }
-
-      }
-
-      @media (max-width: 300px) {
-        .focus-item {
-          --item-scale: 0.76;
-        }
-
-        .focus-item:nth-child(2) {
-          --x: 77.326%;
-          --y: 18.633%;
-        }
-
-        .focus-item:nth-child(3) {
-          --x: 91.337%;
-          --y: 45.33%;
-        }
-
-        .focus-item:nth-child(4) {
-          --x: 85.599%;
-          --y: 71.524%;
-        }
-
-        .focus-item:nth-child(5) {
-          --x: 50.433%;
-          --y: 91.598%;
-        }
-
-        .focus-item:nth-child(6) {
-          --x: 14.18%;
-          --y: 71.153%;
-        }
-
-        .focus-item:nth-child(7) {
-          --x: 8.657%;
-          --y: 45.379%;
-        }
-
-        .focus-item:nth-child(8) {
-          --x: 22.133%;
-          --y: 19.114%;
-        }
-      }
-
-      @media (max-width: 240px) {
-        .focus-item {
-          --item-scale: 0.7;
-        }
-
-        .focus-item:nth-child(2) {
-          --x: 76.866%;
-          --y: 18.238%;
-        }
-
-        .focus-item:nth-child(3) {
-          --x: 91.22%;
-          --y: 44.393%;
-        }
-
-        .focus-item:nth-child(4) {
-          --x: 86.486%;
-          --y: 69.983%;
-        }
-
-        .focus-item:nth-child(5) {
-          --x: 50.463%;
-          --y: 91.597%;
-        }
-
-        .focus-item:nth-child(6) {
-          --x: 13.247%;
-          --y: 69.488%;
-        }
-
-        .focus-item:nth-child(7) {
-          --x: 8.779%;
-          --y: 44.394%;
-        }
-
-        .focus-item:nth-child(8) {
-          --x: 22.545%;
-          --y: 18.746%;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        .portrait,
-        .wink,
-        .scroll-arrow,
-        .assistant-message,
-        .assistant-typing span {
-          animation: none;
-        }
-
-        .will-reveal {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-
-        .assistant-panel,
-        .closing-content,
-        .assistant-message,
-        .assistant-suggestion,
-        .assistant-composer,
-        .assistant-send,
-        .closing-link,
-        .closing-field,
-        .closing-submit {
-          transition: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <section class="screen" id="home" aria-label="Home">
-        <div class="hero">
-          <img
-            src="surya-prakasha.svg"
-            alt="Illustrated collage-style lettering reading Surya Prakasha P K"
-          />
-          <div
-            class="portrait"
-            role="img"
-            aria-label="Animated cartoon portrait of Surya Prakasha"
-          >
-            <img class="portrait-image" src="surya-cartoon.png" alt="" />
-            <svg class="wink" viewBox="0 0 640 765" aria-hidden="true">
-              <defs>
-                <linearGradient id="skin" x2="0" y2="1">
-                  <stop stop-color="#e8894e" />
-                  <stop offset="1" stop-color="#c96338" />
-                </linearGradient>
-              </defs>
-              <path d="M174 416 Q222 393 270 416 Q222 438 174 416Z" fill="url(#skin)" />
-              <path d="M180 417 Q222 402 264 417" fill="none" stroke="#40221c" stroke-linecap="round" stroke-width="5" />
-              <path d="M177 414 Q222 394 267 414" fill="none" stroke="#65301f" stroke-linecap="round" stroke-width="3" />
-            </svg>
-          </div>
-        </div>
-        <a class="scroll-cue" href="#next-screen">
-          <span>SCROLL DOWN</span>
-          <svg class="scroll-arrow" viewBox="0 0 20 20" aria-hidden="true">
-            <path d="M4 7.5 10 13l6-5.5" />
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="screen" id="home" aria-label="Home">
+      <div class="hero">
+        <img src="surya-prakasha.svg" alt="Illustrated collage-style lettering reading Surya Prakasha P K" />
+        <div class="portrait" role="img" aria-label="Animated cartoon portrait of Surya Prakasha">
+          <img class="portrait-image" src="surya-cartoon.png" alt="" />
+          <svg class="wink" viewBox="0 0 640 765" aria-hidden="true">
+            <defs>
+              <linearGradient id="skin" x2="0" y2="1">
+                <stop stop-color="#e8894e" />
+                <stop offset="1" stop-color="#c96338" />
+              </linearGradient>
+            </defs>
+            <path d="M174 416 Q222 393 270 416 Q222 438 174 416Z" fill="url(#skin)" />
+            <path d="M180 417 Q222 402 264 417" fill="none" stroke="#40221c" stroke-linecap="round" stroke-width="5" />
+            <path d="M177 414 Q222 394 267 414" fill="none" stroke="#65301f" stroke-linecap="round" stroke-width="3" />
           </svg>
-        </a>
-      </section>
-      <section class="screen about-screen" id="next-screen">
-        <div class="about-content">
-          <div class="about-copy">
-            <p>
-              I’m a Software Engineer at Infosys, with one year of experience developing Python based applications and Agentic AI solutions for a leading US financial institution.
-            </p>
-            <p>
-             I help enterprises adopt AI at scale by architecting and developing AI-driven solutions.
-            </p>
-            <p>
-              My work involves understanding business requirements,
-              participating in stakeholder discussions and technical design
-              meetings, and contributing to project planning and execution. I
-              have experience working in cross-cultural, multidisciplinary
-              teams and following Agile practices, including sprint planning
-              and tracking.
-            </p>
-            <p>
-              I’m quick to grasp & understand complex problems, communicate clearly
-              and manage technical tasks effectively.
-            </p>
-            <p>
-              I’m proud to be part of Infosys’ Strategic Technology Group, a
-              unit that brings together the company’s top 1% of developers.
-            </p>
-            <p>
-              I graduated with First Class in Bachelor of Technology in Artificial Intelligence
-              and Data Science from Anna University, Chennai, India.
-            </p>
-          </div>
         </div>
-      </section>
-      <section class="screen focus-screen" id="focus-screen" aria-label="Areas of focus">
-        <h2 class="focus-title">I’d focus</h2>
-        <ul class="focus-orbit" aria-label="Professional focus areas">
-          <li class="focus-item" tabindex="0" aria-label="Model Context Protocol (MCP)">
-            <img class="focus-image" src="mcp.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">Model Context Protocol</span>
-          </li>
-          <li class="focus-item" tabindex="0" aria-label="GitHub">
-            <img class="focus-image" src="github.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">GitHub</span>
-          </li>
-          <li class="focus-item" tabindex="0" aria-label="Python">
-            <img class="focus-image" src="python.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">Python</span>
-          </li>
-          <li class="focus-item" tabindex="0" aria-label="Agent-to-Agent collaboration">
-            <img class="focus-image" src="agent-to-agent.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">Agent-to-Agent</span>
-          </li>
-          <li class="focus-item" tabindex="0" aria-label="FastAPI">
-            <img class="focus-image" src="fastapi.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">FastAPI</span>
-          </li>
-          <li class="focus-item" tabindex="0" aria-label="Retrieval-Augmented Generation (RAG)">
-            <img class="focus-image" src="rag.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">RAG</span>
-          </li>
-          <li class="focus-item" tabindex="0" aria-label="Amazon Web Services (AWS)">
-            <img class="focus-image" src="aws.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">AWS</span>
-          </li>
-          <li class="focus-item" tabindex="0" aria-label="Claude">
-            <img class="focus-image" src="claude.png" alt="" />
-            <span class="focus-caption" aria-hidden="true">Claude</span>
-          </li>
-        </ul>
-      </section>
-      <section class="screen assistant-screen" id="next-page" aria-label="Ayrus personal assistant">
-        <div class="assistant-panel">
-          <header class="assistant-header">
-            <div class="assistant-identity">
-              <span class="assistant-avatar" aria-hidden="true">A</span>
-              <div>
-                <h2 class="assistant-name">Ayrus</h2>
-                <p class="assistant-subtitle">Surya's personal assistant and companion.</p>
-              </div>
-            </div>
-            <div class="assistant-header-actions">
-              <button class="assistant-reset-btn" id="ayrus-reset-chat" type="button" aria-label="Start new conversation" title="Start new conversation">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                  <path d="M3 3v5h5"></path>
-                </svg>
-                <span>New chat</span>
-              </button>
-              <button class="assistant-voice-toggle" id="ayrus-voice-toggle" type="button" aria-label="Toggle voiceover" title="Toggle ElevenLabs voiceover">
-                <svg class="voice-icon-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                </svg>
-                <svg class="voice-icon-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                  <line x1="23" y1="9" x2="17" y2="15"></line>
-                  <line x1="17" y1="9" x2="23" y2="15"></line>
-                </svg>
-                <span class="voice-label">Voice On</span>
-              </button>
-            </div>
-          </header>
-          <div
-            class="assistant-messages"
-            id="ayrus-messages"
-            role="log"
-            aria-live="polite"
-            aria-relevant="additions"
-            aria-label="Conversation with Ayrus"
-          >
-            <div class="assistant-intro">
-              <div class="assistant-message">
-                Hey! I’m Ayrus, Surya’s companion. You can ask me anything about him, his projects, or what he’s building... honestly, you can even ask me things you wouldn't ask him in person! 😉 What’s on your mind?
-              </div>
-              <div class="assistant-suggestions" aria-label="Suggested messages">
-                <button class="assistant-suggestion" type="button">
-                  What can you help me with?
-                </button>
-                <button class="assistant-suggestion" type="button">
-                  Tell me about Surya
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="assistant-composer-wrap">
-            <form class="assistant-composer" id="ayrus-form">
-              <label class="visually-hidden" for="ayrus-input">
-                Message Ayrus
-              </label>
-              <textarea
-                class="assistant-input"
-                id="ayrus-input"
-                name="message"
-                rows="1"
-                placeholder="Message Ayrus..."
-                autocomplete="off"
-                required
-              ></textarea>
-              <button
-                class="assistant-send"
-                type="submit"
-                aria-label="Send message"
-                disabled
-              >
-                <svg viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M10 15.5V4.5M5.5 9 10 4.5 14.5 9" />
-                </svg>
-              </button>
-            </form>
-            <p class="assistant-note">
-              Ayrus is an AI companion — sometimes it may make mistakes. Consider checking important information.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class="screen closing-screen" id="contact-screen" aria-labelledby="closing-title">
-        <div class="closing-content">
-          <p class="closing-kicker">The end — and a new beginning</p>
-          <h1 class="closing-title" id="closing-title">Thank you for being here.</h1>
-          <p class="closing-copy">
-            Thank you so much for your time, patience and for scrolling all
-            the way through here.<br />
-            I’d love to hear from you — connect with me on
-            <a
-              class="closing-link"
-              href="https://www.linkedin.com/in/surya-prakasha-p-k/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >LinkedIn <span aria-hidden="true">↗</span></a>,
-            email me at
-            <a class="closing-link" href="mailto:suryaprakashapk@gmail.com">suryaprakashapk@gmail.com</a>
-            or just leave me a message below.
+      </div>
+      <a class="scroll-cue" href="#next-screen">
+        <span>SCROLL DOWN</span>
+        <svg class="scroll-arrow" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M4 7.5 10 13l6-5.5" />
+        </svg>
+      </a>
+    </section>
+    <section class="screen about-screen" id="next-screen">
+      <div class="about-content">
+        <div class="about-copy">
+          <p>
+            I’m a Software Engineer at Infosys, with one year of experience developing Python based applications and
+            Agentic AI solutions for a leading US financial institution.
           </p>
-          <form class="closing-contact" id="contact-form">
-            <label class="visually-hidden" for="contact-name">Your name</label>
-            <input
-              class="closing-field"
-              id="contact-name"
-              name="name"
-              type="text"
-              placeholder="Your name"
-              autocomplete="name"
-              required
-            />
-            <label class="visually-hidden" for="contact-message">Your message</label>
-            <textarea
-              class="closing-field"
-              id="contact-message"
-              name="message"
-              placeholder="Write me a little message..."
-              required
-            ></textarea>
-            <div class="closing-form-footer">
-              <p class="closing-mail-note">Hit send — goes straight to my inbox.</p>
-              <button class="closing-submit" type="submit" aria-label="Send message">
-                <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7">
-                  <path d="M10 15.5V4.5M5.5 9 10 4.5 14.5 9" />
-                </svg>
+          <p>
+            My work involves understanding business requirements,
+            participating in stakeholder discussions and technical design
+            meetings, and contributing to project planning and execution. I
+            have experience working in cross-cultural, multidisciplinary
+            teams and following Agile practices, including sprint planning
+            and tracking.
+          </p>
+          <p>
+            I’m quick to grasp & understand complex problems, communicate clearly
+            and manage technical tasks effectively.
+          </p>
+          <p>
+            I’m proud to be part of Infosys’ Strategic Technology Group, a
+            unit that brings together the company’s top 1% of developers.
+          </p>
+          <p>
+            I graduated with First Class in Bachelor of Technology in Artificial Intelligence
+            and Data Science from Sri Sairam Engineering College, Chennai, India.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="screen focus-screen" id="focus-screen" aria-label="Areas of focus">
+      <h2 class="focus-title">I’d focus</h2>
+      <ul class="focus-orbit" aria-label="Professional focus areas">
+        <li class="focus-item" tabindex="0" aria-label="Model Context Protocol (MCP)">
+          <img class="focus-image" src="mcp.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">Model Context Protocol</span>
+        </li>
+        <li class="focus-item" tabindex="0" aria-label="GitHub">
+          <img class="focus-image" src="github.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">GitHub</span>
+        </li>
+        <li class="focus-item" tabindex="0" aria-label="Python">
+          <img class="focus-image" src="python.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">Python</span>
+        </li>
+        <li class="focus-item" tabindex="0" aria-label="Agent-to-Agent collaboration">
+          <img class="focus-image" src="agent-to-agent.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">Agent-to-Agent</span>
+        </li>
+        <li class="focus-item" tabindex="0" aria-label="FastAPI">
+          <img class="focus-image" src="fastapi.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">FastAPI</span>
+        </li>
+        <li class="focus-item" tabindex="0" aria-label="Retrieval-Augmented Generation (RAG)">
+          <img class="focus-image" src="rag.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">RAG</span>
+        </li>
+        <li class="focus-item" tabindex="0" aria-label="Amazon Web Services (AWS)">
+          <img class="focus-image" src="aws.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">AWS</span>
+        </li>
+        <li class="focus-item" tabindex="0" aria-label="Claude">
+          <img class="focus-image" src="claude.png" alt="" />
+          <span class="focus-caption" aria-hidden="true">Claude</span>
+        </li>
+      </ul>
+    </section>
+    <section class="screen assistant-screen" id="next-page" aria-label="Ayrus personal assistant">
+      <div class="assistant-panel">
+        <header class="assistant-header">
+          <div class="assistant-identity">
+            <span class="assistant-avatar" aria-hidden="true">A</span>
+            <div>
+              <h2 class="assistant-name">Ayrus</h2>
+              <p class="assistant-subtitle">Surya's personal assistant and companion.</p>
+            </div>
+          </div>
+          <div class="assistant-header-actions">
+            <button class="assistant-reset-btn" id="ayrus-reset-chat" type="button" aria-label="Start new conversation"
+              title="Start new conversation">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+              <span>New chat</span>
+            </button>
+            <button class="assistant-voice-toggle" id="ayrus-voice-toggle" type="button" aria-label="Toggle voiceover"
+              title="Toggle ElevenLabs voiceover">
+              <svg class="voice-icon-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <svg class="voice-icon-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <span class="voice-label">Voice On</span>
+            </button>
+          </div>
+        </header>
+        <div class="assistant-messages" id="ayrus-messages" role="log" aria-live="polite" aria-relevant="additions"
+          aria-label="Conversation with Ayrus">
+          <div class="assistant-intro">
+            <div class="assistant-message">
+              Hey! I’m Ayrus, Surya’s companion. You can ask me anything about him, his projects, or what he’s
+              building... honestly, you can even ask me things you wouldn't ask him in person! 😉 What’s on your mind?
+            </div>
+            <div class="assistant-suggestions" aria-label="Suggested messages">
+              <button class="assistant-suggestion" type="button">
+                What can you help me with?
+              </button>
+              <button class="assistant-suggestion" type="button">
+                Tell me about Surya
               </button>
             </div>
-          </form>
-          <p class="closing-success" id="contact-success" hidden>Message sent, Thank you so much!</p>
-          <p class="closing-signoff">Cheers, have a wonderful day. Bye!</p>
+          </div>
         </div>
-      </section>
-    </main>
-    <script>
-      const messageList = document.querySelector("#ayrus-messages");
-      const messageForm = document.querySelector("#ayrus-form");
-      const messageInput = document.querySelector("#ayrus-input");
-      const sendButton = messageForm.querySelector('button[type="submit"]');
+        <div class="assistant-composer-wrap">
+          <form class="assistant-composer" id="ayrus-form">
+            <label class="visually-hidden" for="ayrus-input">
+              Message Ayrus
+            </label>
+            <textarea class="assistant-input" id="ayrus-input" name="message" rows="1" placeholder="Message Ayrus..."
+              autocomplete="off" required></textarea>
+            <button class="assistant-send" type="submit" aria-label="Send message" disabled>
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M10 15.5V4.5M5.5 9 10 4.5 14.5 9" />
+              </svg>
+            </button>
+          </form>
+          <p class="assistant-note">
+            Ayrus is an AI companion — sometimes it may make mistakes. Consider checking important information.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="screen closing-screen" id="contact-screen" aria-labelledby="closing-title">
+      <div class="closing-content">
+        <p class="closing-kicker">The end — and a new beginning</p>
+        <h1 class="closing-title" id="closing-title">Thank you for being here.</h1>
+        <p class="closing-copy">
+          Thank you so much for your time, patience and for scrolling all
+          the way through here.<br />
+          I’d love to hear from you — connect with me on
+          <a class="closing-link" href="https://www.linkedin.com/in/surya-prakasha-p-k/" target="_blank"
+            rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>,
+          email me at
+          <a class="closing-link" href="mailto:suryaprakashapk@gmail.com">suryaprakashapk@gmail.com</a>
+          or just leave me a message below.
+        </p>
+        <form class="closing-contact" id="contact-form">
+          <label class="visually-hidden" for="contact-name">Your name</label>
+          <input class="closing-field" id="contact-name" name="name" type="text" placeholder="Your name"
+            autocomplete="name" required />
+          <label class="visually-hidden" for="contact-message">Your message</label>
+          <textarea class="closing-field" id="contact-message" name="message" placeholder="Write me a little message..."
+            required></textarea>
+          <div class="closing-form-footer">
+            <p class="closing-mail-note">Hit send — goes straight to my inbox.</p>
+            <button class="closing-submit" type="submit" aria-label="Send message">
+              <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="1.7">
+                <path d="M10 15.5V4.5M5.5 9 10 4.5 14.5 9" />
+              </svg>
+            </button>
+          </div>
+        </form>
+        <p class="closing-success" id="contact-success" hidden>Message sent, Thank you so much!</p>
+        <p class="closing-signoff">Cheers, have a wonderful day. Bye!</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    const messageList = document.querySelector("#ayrus-messages");
+    const messageForm = document.querySelector("#ayrus-form");
+    const messageInput = document.querySelector("#ayrus-input");
+    const sendButton = messageForm.querySelector('button[type="submit"]');
 
-      const scrollMessagesToEnd = () => {
-        messageList.scrollTo({
-          top: messageList.scrollHeight,
-          behavior: "smooth",
-        });
-      };
-
-      const formatAssistantMarkdown = (text) => {
-        if (!text) return "";
-        // 1. Escape HTML for security
-        let safe = text
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;");
-
-        // 2. Normalize inline bullet items (e.g. '. * **' to newlines)
-        safe = safe.replace(/([.:!?]|\))\s*[*•\-]\s+(?=\*\*|[A-Z])/g, "$1\n* ");
-
-        // 3. Process lines
-        const lines = safe.split(/\r?\n/);
-        const out = [];
-        let inList = false;
-
-        for (let i = 0; i < lines.length; i++) {
-          const line = lines[i].trim();
-          if (!line) continue;
-
-          const bulletMatch = line.match(/^([*\-•])\s+(.+)$/);
-          if (bulletMatch) {
-            if (!inList) {
-              out.push("<ul>");
-              inList = true;
-            }
-            let itemContent = bulletMatch[2];
-            itemContent = itemContent.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-            itemContent = itemContent.replace(/`([^`]+)`/g, "<code>$1</code>");
-            out.push(`<li>${itemContent}</li>`);
-          } else {
-            if (inList) {
-              out.push("</ul>");
-              inList = false;
-            }
-            let paraContent = line;
-            paraContent = paraContent.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-            paraContent = paraContent.replace(/`([^`]+)`/g, "<code>$1</code>");
-            out.push(`<p>${paraContent}</p>`);
-          }
-        }
-
-        if (inList) {
-          out.push("</ul>");
-        }
-
-        return out.join("");
-      };
-
-      let currentAudio = null;
-      let isVoiceEnabled = true;
-
-      const playVoiceover = (base64Audio, force = false) => {
-        if ((!isVoiceEnabled && !force) || !base64Audio) return;
-        try {
-          if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-            currentAudio = null;
-          }
-          currentAudio = new Audio("data:audio/mpeg;base64," + base64Audio);
-          currentAudio.play().catch((err) => {
-            console.warn("Audio playback was blocked or interrupted:", err);
-          });
-        } catch (err) {
-          console.error("Audio error:", err);
-        }
-      };
-
-      const appendMessage = (text, isUser) => {
-        const message = document.createElement("div");
-        message.className = isUser
-          ? "assistant-message assistant-message--user"
-          : "assistant-message";
-        if (isUser) {
-          message.textContent = text;
-        } else {
-          message.innerHTML = formatAssistantMarkdown(text);
-        }
-        messageList.append(message);
-        scrollMessagesToEnd();
-        return message;
-      };
-
-      const resizeMessageInput = () => {
-        messageInput.style.height = "auto";
-        messageInput.style.height = `${Math.min(messageInput.scrollHeight, 120)}px`;
-        sendButton.disabled = messageInput.value.trim().length === 0;
-      };
-
-      messageInput.addEventListener("input", resizeMessageInput);
-
-      messageInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" && !event.shiftKey) {
-          event.preventDefault();
-          if (messageInput.value.trim()) {
-            messageForm.requestSubmit();
-          }
-        }
+    const scrollMessagesToEnd = () => {
+      messageList.scrollTo({
+        top: messageList.scrollHeight,
+        behavior: "smooth",
       });
+    };
 
-      const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:")
-        ? "http://127.0.0.1:8000"
-        : "https://wbpszbiq97.execute-api.ap-south-1.amazonaws.com";
+    const formatAssistantMarkdown = (text) => {
+      if (!text) return "";
+      // 1. Escape HTML for security
+      let safe = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
 
-      // Speculative pre-warming: Spins up the AWS Lambda container in the background
-      // so the first user message has zero cold-start delay
-      let lastWarmedAt = 0;
-      const warmBackend = () => {
-        const now = Date.now();
-        if (now - lastWarmedAt < 4 * 60 * 1000) return;
-        lastWarmedAt = now;
-        try {
-          fetch(`${API_BASE}/health`, { method: "GET", keepalive: true }).catch(() => {});
-        } catch (_) {}
-      };
+      // 2. Normalize inline bullet items (e.g. '. * **' to newlines)
+      safe = safe.replace(/([.:!?]|\))\s*[*•\-]\s+(?=\*\*|[A-Z])/g, "$1\n* ");
 
-      // 1. Warm immediately on initial page load
-      warmBackend();
+      // 3. Process lines
+      const lines = safe.split(/\r?\n/);
+      const out = [];
+      let inList = false;
 
-      // 2. Warm when visitor scrolls within 300px of the Ayrus section
-      const ayrusScreen = document.querySelector("#next-page");
-      if (ayrusScreen && "IntersectionObserver" in window) {
-        const warmObserver = new IntersectionObserver(
-          (entries) => {
-            if (entries.some((e) => e.isIntersecting)) {
-              warmBackend();
-              warmObserver.disconnect();
-            }
-          },
-          { rootMargin: "300px" }
-        );
-        warmObserver.observe(ayrusScreen);
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const bulletMatch = line.match(/^([*\-•])\s+(.+)$/);
+        if (bulletMatch) {
+          if (!inList) {
+            out.push("<ul>");
+            inList = true;
+          }
+          let itemContent = bulletMatch[2];
+          itemContent = itemContent.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+          itemContent = itemContent.replace(/`([^`]+)`/g, "<code>$1</code>");
+          out.push(`<li>${itemContent}</li>`);
+        } else {
+          if (inList) {
+            out.push("</ul>");
+            inList = false;
+          }
+          let paraContent = line;
+          paraContent = paraContent.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+          paraContent = paraContent.replace(/`([^`]+)`/g, "<code>$1</code>");
+          out.push(`<p>${paraContent}</p>`);
+        }
       }
 
-      // 3. Warm if user focuses or hovers on the message input
-      messageInput.addEventListener("focus", warmBackend, { passive: true });
-      messageInput.addEventListener("mouseenter", warmBackend, { passive: true });
+      if (inList) {
+        out.push("</ul>");
+      }
 
-      // Session Management & Persistence
-      const getSessionId = () => {
-        let sid = sessionStorage.getItem("ayrus_chat_session_id");
-        if (!sid) {
-          sid = "sess_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
-          sessionStorage.setItem("ayrus_chat_session_id", sid);
-        }
-        return sid;
-      };
+      return out.join("");
+    };
 
-      let chatHistory = [];
+    let currentAudio = null;
+    let isVoiceEnabled = true;
 
-      const saveCurrentSession = () => {
-        try {
-          sessionStorage.setItem("ayrus_chat_history", JSON.stringify(chatHistory.slice(-20)));
-        } catch (_) {}
-      };
-
-      const loadSavedSession = () => {
-        try {
-          const saved = sessionStorage.getItem("ayrus_chat_history");
-          if (saved) {
-            const parsed = JSON.parse(saved);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-              chatHistory = parsed;
-              const intro = messageList.querySelector(".assistant-intro");
-              if (intro) intro.remove();
-              chatHistory.forEach((item) => {
-                appendMessage(item.text, item.role === "user");
-              });
-              scrollMessagesToEnd();
-            }
-          }
-        } catch (e) {
-          console.warn("Could not restore session:", e);
-        }
-      };
-
-      const resetChatSession = () => {
+    const playVoiceover = (base64Audio, force = false) => {
+      if ((!isVoiceEnabled && !force) || !base64Audio) return;
+      try {
         if (currentAudio) {
           currentAudio.pause();
           currentAudio.currentTime = 0;
           currentAudio = null;
         }
-        chatHistory = [];
-        sessionStorage.removeItem("ayrus_chat_history");
-        sessionStorage.removeItem("ayrus_chat_session_id");
-        messageList.innerHTML = `
+        currentAudio = new Audio("data:audio/mpeg;base64," + base64Audio);
+        currentAudio.play().catch((err) => {
+          console.warn("Audio playback was blocked or interrupted:", err);
+        });
+      } catch (err) {
+        console.error("Audio error:", err);
+      }
+    };
+
+    const appendMessage = (text, isUser) => {
+      const message = document.createElement("div");
+      message.className = isUser
+        ? "assistant-message assistant-message--user"
+        : "assistant-message";
+      if (isUser) {
+        message.textContent = text;
+      } else {
+        message.innerHTML = formatAssistantMarkdown(text);
+      }
+      messageList.append(message);
+      scrollMessagesToEnd();
+      return message;
+    };
+
+    const resizeMessageInput = () => {
+      messageInput.style.height = "auto";
+      messageInput.style.height = `${Math.min(messageInput.scrollHeight, 120)}px`;
+      sendButton.disabled = messageInput.value.trim().length === 0;
+    };
+
+    messageInput.addEventListener("input", resizeMessageInput);
+
+    messageInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        if (messageInput.value.trim()) {
+          messageForm.requestSubmit();
+        }
+      }
+    });
+
+    const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:")
+      ? "http://127.0.0.1:8000"
+      : "https://wbpszbiq97.execute-api.ap-south-1.amazonaws.com";
+
+    // Speculative pre-warming: Spins up the AWS Lambda container in the background
+    // so the first user message has zero cold-start delay
+    let lastWarmedAt = 0;
+    const warmBackend = () => {
+      const now = Date.now();
+      if (now - lastWarmedAt < 4 * 60 * 1000) return;
+      lastWarmedAt = now;
+      try {
+        fetch(`${API_BASE}/health`, { method: "GET", keepalive: true }).catch(() => { });
+      } catch (_) { }
+    };
+
+    // 1. Warm immediately on initial page load
+    warmBackend();
+
+    // 2. Warm when visitor scrolls within 300px of the Ayrus section
+    const ayrusScreen = document.querySelector("#next-page");
+    if (ayrusScreen && "IntersectionObserver" in window) {
+      const warmObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            warmBackend();
+            warmObserver.disconnect();
+          }
+        },
+        { rootMargin: "300px" }
+      );
+      warmObserver.observe(ayrusScreen);
+    }
+
+    // 3. Warm if user focuses or hovers on the message input
+    messageInput.addEventListener("focus", warmBackend, { passive: true });
+    messageInput.addEventListener("mouseenter", warmBackend, { passive: true });
+
+    // Session Management & Persistence
+    const getSessionId = () => {
+      let sid = sessionStorage.getItem("ayrus_chat_session_id");
+      if (!sid) {
+        sid = "sess_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
+        sessionStorage.setItem("ayrus_chat_session_id", sid);
+      }
+      return sid;
+    };
+
+    let chatHistory = [];
+
+    const saveCurrentSession = () => {
+      try {
+        sessionStorage.setItem("ayrus_chat_history", JSON.stringify(chatHistory.slice(-20)));
+      } catch (_) { }
+    };
+
+    const loadSavedSession = () => {
+      try {
+        const saved = sessionStorage.getItem("ayrus_chat_history");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            chatHistory = parsed;
+            const intro = messageList.querySelector(".assistant-intro");
+            if (intro) intro.remove();
+            chatHistory.forEach((item) => {
+              appendMessage(item.text, item.role === "user");
+            });
+            scrollMessagesToEnd();
+          }
+        }
+      } catch (e) {
+        console.warn("Could not restore session:", e);
+      }
+    };
+
+    const resetChatSession = () => {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+      chatHistory = [];
+      sessionStorage.removeItem("ayrus_chat_history");
+      sessionStorage.removeItem("ayrus_chat_session_id");
+      messageList.innerHTML = `
           <div class="assistant-intro">
             <div class="assistant-message">
               Hey! I’m Ayrus, Surya’s companion. You can ask me anything about him, his projects, or what he’s building... honestly, you can even ask me things you wouldn't ask him in person! 😉 What’s on your mind?
@@ -1908,277 +1865,278 @@
             </div>
           </div>
         `;
-        messageList.querySelectorAll(".assistant-suggestion").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            messageInput.value = btn.textContent.trim();
-            resizeMessageInput();
-            messageInput.focus();
-          });
-        });
-        scrollMessagesToEnd();
-        messageInput.focus();
-      };
-
-      // Load session on startup
-      loadSavedSession();
-
-      messageForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const text = messageInput.value.trim();
-
-        if (!text) {
-          return;
-        }
-
-        appendMessage(text, true);
-        messageInput.value = "";
-        resizeMessageInput();
-        sendButton.disabled = true;
-
-        const typing = document.createElement("div");
-        typing.className = "assistant-message";
-        typing.setAttribute("aria-label", "Ayrus is thinking");
-        const typingIndicator = document.createElement("span");
-        typingIndicator.className = "assistant-typing";
-        typingIndicator.setAttribute("aria-hidden", "true");
-
-        for (let index = 0; index < 3; index += 1) {
-          typingIndicator.append(document.createElement("span"));
-        }
-
-        typing.append(typingIndicator);
-        messageList.append(typing);
-        scrollMessagesToEnd();
-
-        try {
-          const idempotencyKey = "req_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
-          const response = await fetch(`${API_BASE}/v1/agent/requests`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Idempotency-Key": idempotencyKey,
-            },
-            body: JSON.stringify({
-              message: text,
-              history: chatHistory.slice(-8),
-              session_id: getSessionId(),
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error(`API error ${response.status}`);
-          }
-
-          const data = await response.json();
-          typing.remove();
-          const replyText = data.answer || "I processed your request, but have no reply at the moment.";
-          appendMessage(replyText, false);
-
-          if (data.audio_base64) {
-            playVoiceover(data.audio_base64);
-          }
-
-          chatHistory.push({ role: "user", text: text });
-          chatHistory.push({ role: "assistant", text: replyText });
-          saveCurrentSession();
-        } catch (err) {
-          console.error("Chat error:", err);
-          typing.remove();
-          appendMessage(
-            "I ran into a quick hiccup connecting to my memory core. Please try again in a moment!",
-            false,
-          );
-        } finally {
+      messageList.querySelectorAll(".assistant-suggestion").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          messageInput.value = btn.textContent.trim();
           resizeMessageInput();
           messageInput.focus();
+        });
+      });
+      scrollMessagesToEnd();
+      messageInput.focus();
+    };
+
+    // Load session on startup
+    loadSavedSession();
+
+    messageForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const text = messageInput.value.trim();
+
+      if (!text) {
+        return;
+      }
+
+      appendMessage(text, true);
+      messageInput.value = "";
+      resizeMessageInput();
+      sendButton.disabled = true;
+
+      const typing = document.createElement("div");
+      typing.className = "assistant-message";
+      typing.setAttribute("aria-label", "Ayrus is thinking");
+      const typingIndicator = document.createElement("span");
+      typingIndicator.className = "assistant-typing";
+      typingIndicator.setAttribute("aria-hidden", "true");
+
+      for (let index = 0; index < 3; index += 1) {
+        typingIndicator.append(document.createElement("span"));
+      }
+
+      typing.append(typingIndicator);
+      messageList.append(typing);
+      scrollMessagesToEnd();
+
+      try {
+        const idempotencyKey = "req_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
+        const response = await fetch(`${API_BASE}/v1/agent/requests`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Idempotency-Key": idempotencyKey,
+          },
+          body: JSON.stringify({
+            message: text,
+            history: chatHistory.slice(-8),
+            session_id: getSessionId(),
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`API error ${response.status}`);
         }
+
+        const data = await response.json();
+        typing.remove();
+        const replyText = data.answer || "I processed your request, but have no reply at the moment.";
+        appendMessage(replyText, false);
+
+        if (data.audio_base64) {
+          playVoiceover(data.audio_base64);
+        }
+
+        chatHistory.push({ role: "user", text: text });
+        chatHistory.push({ role: "assistant", text: replyText });
+        saveCurrentSession();
+      } catch (err) {
+        console.error("Chat error:", err);
+        typing.remove();
+        appendMessage(
+          "I ran into a quick hiccup connecting to my memory core. Please try again in a moment!",
+          false,
+        );
+      } finally {
+        resizeMessageInput();
+        messageInput.focus();
+      }
+    });
+
+    const resetChatBtn = document.querySelector("#ayrus-reset-chat");
+    if (resetChatBtn) {
+      resetChatBtn.addEventListener("click", resetChatSession);
+    }
+
+    const voiceToggleBtn = document.querySelector("#ayrus-voice-toggle");
+    if (voiceToggleBtn) {
+      const iconOn = voiceToggleBtn.querySelector(".voice-icon-on");
+      const iconOff = voiceToggleBtn.querySelector(".voice-icon-off");
+      const label = voiceToggleBtn.querySelector(".voice-label");
+
+      voiceToggleBtn.addEventListener("click", () => {
+        isVoiceEnabled = !isVoiceEnabled;
+        if (!isVoiceEnabled && currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
+        voiceToggleBtn.classList.toggle("is-muted", !isVoiceEnabled);
+        if (iconOn) iconOn.hidden = !isVoiceEnabled;
+        if (iconOff) iconOff.hidden = isVoiceEnabled;
+        if (label) label.textContent = isVoiceEnabled ? "Voice On" : "Muted";
+      });
+    }
+
+    document
+      .querySelectorAll(".assistant-suggestion")
+      .forEach((suggestion) => {
+        suggestion.addEventListener("click", () => {
+          messageInput.value = suggestion.textContent.trim();
+          resizeMessageInput();
+          messageInput.focus();
+        });
       });
 
-      const resetChatBtn = document.querySelector("#ayrus-reset-chat");
-      if (resetChatBtn) {
-        resetChatBtn.addEventListener("click", resetChatSession);
-      }
+    const contactForm = document.querySelector("#contact-form");
+    const contactSuccess = document.querySelector("#contact-success");
+    const contactSubmit = contactForm.querySelector('button[type="submit"]');
+    let contactSuccessTimer = null;
 
-      const voiceToggleBtn = document.querySelector("#ayrus-voice-toggle");
-      if (voiceToggleBtn) {
-        const iconOn = voiceToggleBtn.querySelector(".voice-icon-on");
-        const iconOff = voiceToggleBtn.querySelector(".voice-icon-off");
-        const label = voiceToggleBtn.querySelector(".voice-label");
-
-        voiceToggleBtn.addEventListener("click", () => {
-          isVoiceEnabled = !isVoiceEnabled;
-          if (!isVoiceEnabled && currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-          }
-          voiceToggleBtn.classList.toggle("is-muted", !isVoiceEnabled);
-          if (iconOn) iconOn.hidden = !isVoiceEnabled;
-          if (iconOff) iconOff.hidden = isVoiceEnabled;
-          if (label) label.textContent = isVoiceEnabled ? "Voice On" : "Muted";
-        });
-      }
-
-      document
-        .querySelectorAll(".assistant-suggestion")
-        .forEach((suggestion) => {
-          suggestion.addEventListener("click", () => {
-            messageInput.value = suggestion.textContent.trim();
-            resizeMessageInput();
-            messageInput.focus();
-          });
-        });
-
-      const contactForm = document.querySelector("#contact-form");
-      const contactSuccess = document.querySelector("#contact-success");
-      const contactSubmit = contactForm.querySelector('button[type="submit"]');
-      let contactSuccessTimer = null;
-
-      const defaultSubmitIcon = `
+    const defaultSubmitIcon = `
         <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7">
           <path d="M10 15.5V4.5M5.5 9 10 4.5 14.5 9" />
         </svg>
       `;
 
-      const sendingSubmitIcon = `
+    const sendingSubmitIcon = `
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
           <circle cx="12" cy="12" r="9" stroke-opacity="0.25" />
           <path d="M12 3a9 9 0 0 1 9 9" />
         </svg>
       `;
 
-      const successSubmitIcon = `
+    const successSubmitIcon = `
         <svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="4 10.5 8 14.5 16 6" />
         </svg>
       `;
 
-      contactForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const formData = new FormData(contactForm);
-        const name = formData.get("name").toString().trim();
-        const message = formData.get("message").toString().trim();
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(contactForm);
+      const name = formData.get("name").toString().trim();
+      const message = formData.get("message").toString().trim();
 
-        if (!name || !message) return;
+      if (!name || !message) return;
 
-        // 1. Interactive button loading state
-        if (contactSubmit) {
-          contactSubmit.disabled = true;
-          contactSubmit.classList.add("is-sending");
-          contactSubmit.innerHTML = sendingSubmitIcon;
-        }
-
-        try {
-          // 1. Dispatch email directly to suryaprakashapk@gmail.com in background with keepalive
-          fetch("https://formsubmit.co/ajax/suryaprakashapk@gmail.com", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json",
-            },
-            body: JSON.stringify({
-              name: name,
-              message: message,
-              _subject: `New message from ${name} via suryaprakashapk.com`,
-              _template: "table",
-            }),
-            keepalive: true,
-          }).catch((err) => console.warn("Email background send:", err));
-
-          // 2. Also log to your backend / MongoDB contact collection with keepalive
-          const apiPromise = fetch(`${API_BASE}/v1/contact`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: name, message: message }),
-            keepalive: true,
-          }).catch((err) => console.warn("Backend contact send:", err));
-
-          // 3. Ultra-fast feedback: brief ~450ms visual spinner or until backend responds
-          await Promise.race([
-            apiPromise,
-            new Promise((resolve) => setTimeout(resolve, 450)),
-          ]);
-
-          // 4. Reset text boxes after sending
-          contactForm.reset();
-
-          // 3. Interactive button success state
-          if (contactSubmit) {
-            contactSubmit.classList.remove("is-sending");
-            contactSubmit.classList.add("is-success");
-            contactSubmit.innerHTML = successSubmitIcon;
-          }
-
-          // 4. Show success message with smooth fade in
-          contactSuccess.hidden = false;
-          void contactSuccess.offsetHeight;
-          contactSuccess.classList.add("visible");
-
-          // 5. Success message disappears eventually (after 4 seconds)
-          if (contactSuccessTimer) clearTimeout(contactSuccessTimer);
-          contactSuccessTimer = setTimeout(() => {
-            contactSuccess.classList.remove("visible");
-            setTimeout(() => {
-              contactSuccess.hidden = true;
-            }, 350);
-          }, 4000);
-
-        } catch (err) {
-          console.error("Contact send error:", err);
-          contactForm.reset();
-          contactSuccess.hidden = false;
-          void contactSuccess.offsetHeight;
-          contactSuccess.classList.add("visible");
-
-          if (contactSuccessTimer) clearTimeout(contactSuccessTimer);
-          contactSuccessTimer = setTimeout(() => {
-            contactSuccess.classList.remove("visible");
-            setTimeout(() => {
-              contactSuccess.hidden = true;
-            }, 350);
-          }, 4000);
-        } finally {
-          // Re-enable button and restore default upward arrow icon
-          setTimeout(() => {
-            if (contactSubmit) {
-              contactSubmit.disabled = false;
-              contactSubmit.classList.remove("is-sending", "is-success");
-              contactSubmit.innerHTML = defaultSubmitIcon;
-            }
-          }, 1500);
-        }
-      });
-
-      // Scroll-triggered reveals — each group staggers by 130ms per element
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        const revealGroups = [
-          [".about-content"],
-          [".focus-title", ".focus-orbit"],
-          [".assistant-panel"],
-          [".closing-content"],
-        ];
-
-        revealGroups.forEach((selectors) => {
-          const elements = selectors
-            .map((s) => document.querySelector(s))
-            .filter(Boolean);
-
-          elements.forEach((el) => el.classList.add("will-reveal"));
-
-          const observer = new IntersectionObserver(
-            (entries) => {
-              if (entries.some((e) => e.isIntersecting)) {
-                elements.forEach((el, i) => {
-                  setTimeout(() => el.classList.add("revealed"), i * 130);
-                });
-                observer.disconnect();
-              }
-            },
-            { threshold: 0.1 }
-          );
-
-          elements.forEach((el) => observer.observe(el));
-        });
+      // 1. Interactive button loading state
+      if (contactSubmit) {
+        contactSubmit.disabled = true;
+        contactSubmit.classList.add("is-sending");
+        contactSubmit.innerHTML = sendingSubmitIcon;
       }
-    </script>
-  </body>
+
+      try {
+        // 1. Dispatch email directly to suryaprakashapk@gmail.com in background with keepalive
+        fetch("https://formsubmit.co/ajax/suryaprakashapk@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+          body: JSON.stringify({
+            name: name,
+            message: message,
+            _subject: `New message from ${name} via suryaprakashapk.com`,
+            _template: "table",
+          }),
+          keepalive: true,
+        }).catch((err) => console.warn("Email background send:", err));
+
+        // 2. Also log to your backend / MongoDB contact collection with keepalive
+        const apiPromise = fetch(`${API_BASE}/v1/contact`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: name, message: message }),
+          keepalive: true,
+        }).catch((err) => console.warn("Backend contact send:", err));
+
+        // 3. Ultra-fast feedback: brief ~450ms visual spinner or until backend responds
+        await Promise.race([
+          apiPromise,
+          new Promise((resolve) => setTimeout(resolve, 450)),
+        ]);
+
+        // 4. Reset text boxes after sending
+        contactForm.reset();
+
+        // 3. Interactive button success state
+        if (contactSubmit) {
+          contactSubmit.classList.remove("is-sending");
+          contactSubmit.classList.add("is-success");
+          contactSubmit.innerHTML = successSubmitIcon;
+        }
+
+        // 4. Show success message with smooth fade in
+        contactSuccess.hidden = false;
+        void contactSuccess.offsetHeight;
+        contactSuccess.classList.add("visible");
+
+        // 5. Success message disappears eventually (after 4 seconds)
+        if (contactSuccessTimer) clearTimeout(contactSuccessTimer);
+        contactSuccessTimer = setTimeout(() => {
+          contactSuccess.classList.remove("visible");
+          setTimeout(() => {
+            contactSuccess.hidden = true;
+          }, 350);
+        }, 4000);
+
+      } catch (err) {
+        console.error("Contact send error:", err);
+        contactForm.reset();
+        contactSuccess.hidden = false;
+        void contactSuccess.offsetHeight;
+        contactSuccess.classList.add("visible");
+
+        if (contactSuccessTimer) clearTimeout(contactSuccessTimer);
+        contactSuccessTimer = setTimeout(() => {
+          contactSuccess.classList.remove("visible");
+          setTimeout(() => {
+            contactSuccess.hidden = true;
+          }, 350);
+        }, 4000);
+      } finally {
+        // Re-enable button and restore default upward arrow icon
+        setTimeout(() => {
+          if (contactSubmit) {
+            contactSubmit.disabled = false;
+            contactSubmit.classList.remove("is-sending", "is-success");
+            contactSubmit.innerHTML = defaultSubmitIcon;
+          }
+        }, 1500);
+      }
+    });
+
+    // Scroll-triggered reveals — each group staggers by 130ms per element
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const revealGroups = [
+        [".about-content"],
+        [".focus-title", ".focus-orbit"],
+        [".assistant-panel"],
+        [".closing-content"],
+      ];
+
+      revealGroups.forEach((selectors) => {
+        const elements = selectors
+          .map((s) => document.querySelector(s))
+          .filter(Boolean);
+
+        elements.forEach((el) => el.classList.add("will-reveal"));
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((e) => e.isIntersecting)) {
+              elements.forEach((el, i) => {
+                setTimeout(() => el.classList.add("revealed"), i * 130);
+              });
+              observer.disconnect();
+            }
+          },
+          { threshold: 0.1 }
+        );
+
+        elements.forEach((el) => observer.observe(el));
+      });
+    }
+  </script>
+</body>
+
 </html>
