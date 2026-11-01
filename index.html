@@ -508,6 +508,67 @@
         content: "";
       }
 
+      .assistant-voice-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        border: 1px solid rgb(217 225 190 / 22%);
+        border-radius: 999px;
+        background: rgb(217 225 190 / 9%);
+        color: #e7eadc;
+        font: 11px/1 Arial, Helvetica, sans-serif;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        transition:
+          background-color 180ms ease,
+          border-color 180ms ease,
+          color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .assistant-voice-toggle:hover {
+        background: rgb(217 225 190 / 18%);
+        border-color: rgb(217 225 190 / 45%);
+        color: #f7f3e8;
+        transform: translateY(-1px);
+      }
+
+      .assistant-voice-toggle.is-muted {
+        color: rgb(231 234 220 / 46%);
+        border-color: rgb(217 225 190 / 12%);
+        background: transparent;
+      }
+
+      .assistant-voice-toggle svg[hidden],
+      [hidden] {
+        display: none !important;
+      }
+
+      .message-replay-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 8px;
+        padding: 4px 9px;
+        border: 1px solid rgb(217 225 190 / 18%);
+        border-radius: 6px;
+        background: rgb(217 225 190 / 7%);
+        color: rgb(231 234 220 / 75%);
+        cursor: pointer;
+        font: 11px/1.2 Arial, Helvetica, sans-serif;
+        transition:
+          background-color 160ms ease,
+          border-color 160ms ease,
+          color 160ms ease;
+      }
+
+      .message-replay-btn:hover {
+        background: rgb(217 225 190 / 18%);
+        border-color: rgb(217 225 190 / 38%);
+        color: #f0ead7;
+      }
+
       .assistant-messages {
         display: flex;
         flex-direction: column;
@@ -1502,6 +1563,19 @@
                 <p class="assistant-subtitle">Surya's personal assistant and companion.</p>
               </div>
             </div>
+            <button class="assistant-voice-toggle" id="ayrus-voice-toggle" type="button" aria-label="Toggle voiceover" title="Toggle ElevenLabs voiceover">
+              <svg class="voice-icon-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <svg class="voice-icon-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <span class="voice-label">Voice On</span>
+            </button>
           </header>
           <div
             class="assistant-messages"
@@ -1669,7 +1743,27 @@
         return out.join("");
       };
 
-      const appendMessage = (text, isUser) => {
+      let currentAudio = null;
+      let isVoiceEnabled = true;
+
+      const playVoiceover = (base64Audio, force = false) => {
+        if ((!isVoiceEnabled && !force) || !base64Audio) return;
+        try {
+          if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio = null;
+          }
+          currentAudio = new Audio("data:audio/mpeg;base64," + base64Audio);
+          currentAudio.play().catch((err) => {
+            console.warn("Audio playback was blocked or interrupted:", err);
+          });
+        } catch (err) {
+          console.error("Audio error:", err);
+        }
+      };
+
+      const appendMessage = (text, isUser, audioBase64 = null) => {
         const message = document.createElement("div");
         message.className = isUser
           ? "assistant-message assistant-message--user"
@@ -1678,6 +1772,21 @@
           message.textContent = text;
         } else {
           message.innerHTML = formatAssistantMarkdown(text);
+          if (audioBase64) {
+            const replayBtn = document.createElement("button");
+            replayBtn.className = "message-replay-btn";
+            replayBtn.type = "button";
+            replayBtn.title = "Replay voiceover";
+            replayBtn.innerHTML = `
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              <span>Play voice</span>
+            `;
+            replayBtn.addEventListener("click", () => playVoiceover(audioBase64, true));
+            message.append(replayBtn);
+          }
         }
         messageList.append(message);
         scrollMessagesToEnd();
@@ -1701,9 +1810,43 @@
         }
       });
 
-      const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+      const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:")
         ? "http://127.0.0.1:8000"
         : "https://wbpszbiq97.execute-api.ap-south-1.amazonaws.com";
+
+      // Speculative pre-warming: Spins up the AWS Lambda container in the background
+      // so the first user message has zero cold-start delay
+      let lastWarmedAt = 0;
+      const warmBackend = () => {
+        const now = Date.now();
+        if (now - lastWarmedAt < 4 * 60 * 1000) return;
+        lastWarmedAt = now;
+        try {
+          fetch(`${API_BASE}/health`, { method: "GET", keepalive: true }).catch(() => {});
+        } catch (_) {}
+      };
+
+      // 1. Warm immediately on initial page load
+      warmBackend();
+
+      // 2. Warm when visitor scrolls within 300px of the Ayrus section
+      const ayrusScreen = document.querySelector("#next-page");
+      if (ayrusScreen && "IntersectionObserver" in window) {
+        const warmObserver = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((e) => e.isIntersecting)) {
+              warmBackend();
+              warmObserver.disconnect();
+            }
+          },
+          { rootMargin: "300px" }
+        );
+        warmObserver.observe(ayrusScreen);
+      }
+
+      // 3. Warm if user focuses or hovers on the message input
+      messageInput.addEventListener("focus", warmBackend, { passive: true });
+      messageInput.addEventListener("mouseenter", warmBackend, { passive: true });
 
       const chatHistory = [];
 
@@ -1756,7 +1899,11 @@
           const data = await response.json();
           typing.remove();
           const replyText = data.answer || "I processed your request, but have no reply at the moment.";
-          appendMessage(replyText, false);
+          appendMessage(replyText, false, data.audio_base64 || null);
+
+          if (data.audio_base64) {
+            playVoiceover(data.audio_base64);
+          }
 
           chatHistory.push({ role: "user", text: text });
           chatHistory.push({ role: "assistant", text: replyText });
@@ -1772,6 +1919,25 @@
           messageInput.focus();
         }
       });
+
+      const voiceToggleBtn = document.querySelector("#ayrus-voice-toggle");
+      if (voiceToggleBtn) {
+        const iconOn = voiceToggleBtn.querySelector(".voice-icon-on");
+        const iconOff = voiceToggleBtn.querySelector(".voice-icon-off");
+        const label = voiceToggleBtn.querySelector(".voice-label");
+
+        voiceToggleBtn.addEventListener("click", () => {
+          isVoiceEnabled = !isVoiceEnabled;
+          if (!isVoiceEnabled && currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+          }
+          voiceToggleBtn.classList.toggle("is-muted", !isVoiceEnabled);
+          if (iconOn) iconOn.hidden = !isVoiceEnabled;
+          if (iconOff) iconOff.hidden = isVoiceEnabled;
+          if (label) label.textContent = isVoiceEnabled ? "Voice On" : "Muted";
+        });
+      }
 
       document
         .querySelectorAll(".assistant-suggestion")
